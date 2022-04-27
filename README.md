@@ -14,5 +14,10 @@ This project aims to accomplish the following:
 2. Attempt to use current scientific understanding to explain trends away
 3. Should an unexplainable trend exist, further investigate and potentially organize an experiment for ReefCI.
 
+### Key People/Thanks to:
+1. Dr. Greg Michalski, main advisor
+2. Willie, ReefCI in-house marine biologist and owner of the dataset used in this project
+3. Dr. Jeff Turkstra, for his advice in technical elements of this project
+
 ### Privacy Statement
-All works here are solely and exclusively intended for use by Purdue University, specifically students under Dr. Greg Michalski. Use of materials without written consent from Joshua E. Balan or Dr. Michalski is strictly prohibited.
+All works here are solely and exclusively intended for use by Purdue University, specifically students under Dr. Greg Michalski of the Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
