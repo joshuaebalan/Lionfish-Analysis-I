@@ -20,4 +20,4 @@ This project aims to accomplish the following:
 3. Dr. Jeff Turkstra, for his advice in technical elements of this project
 
 ### Privacy Statement
-All works here are solely and exclusively intended for use by Purdue University, specifically students under Dr. Greg Michalski of the Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
+All works here are solely and exclusively intended for use by Purdue University, specifically students under Dr. Greg Michalski of the Purdue University Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
