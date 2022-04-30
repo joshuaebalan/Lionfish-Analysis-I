@@ -1,4 +1,4 @@
-#include "lionfish-test.h"
+#include "lionfish.h"
 #include <assert.h>
 #include <malloc.h>
 #include <stdio.h>
@@ -50,4 +50,15 @@ int relate_time(catch_t *a, catch_t *b) {
       }
     }
   }
+} /* relate_time() */
+
+//These are work in progress functions needed for file reading.
+int enumerate_sex(char *given) {
+  printf("%s\n", given);
+  return 3;
+}
+
+catch_t *read_from_writing(char *given) {
+  printf("%s\n", given);
+  return NULL;
 }

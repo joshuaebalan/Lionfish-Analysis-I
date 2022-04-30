@@ -1,5 +1,5 @@
-#ifndef LIONFISH_TEST_H
-#define LIONFISH_TEST_H
+#ifndef LIONFISH_H
+#define LIONFISH_H
 
 /* named constants */
 
@@ -29,10 +29,14 @@ typedef struct time {
   unsigned int month;
   unsigned int day;
 } catch_t; 
-/* functions inside lionfish-test.c */
+/* functions inside lionfish.c */
 
 int main();
 int relate_time(catch_t *, catch_t *);
+int enumerate_sex(char *);
+catch_t *read_from_writing(char *);
 
-/* functions inside lionfish_file_conv.c */
-#endif //LIONFISH_TEST_H
+/* functions inside lionfish_IO.c */
+
+lionfish_t **read_table_file(char *);
+#endif //LIONFISH_H
