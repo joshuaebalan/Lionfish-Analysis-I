@@ -5,34 +5,49 @@
 #include <stdlib.h>
 
 int main() {
+  printf("compiles successfully!\n");
   return OK;
 }
 
-int relate_time(lionfish_t *a, lionfish_t *b) {
-  if (a->time_caught->id > b->time_caught->id) {
-    return GREATER;
-  }
-  else if (a->time_caught->id < b->time_caught->id) {
-    return LESSER;
-  }
-  else if (a->time_caught->id == b->time_caught->id) {
-    return EQUAL;
-  }
-  else {
-    return UH-OH;
-  }
-}
+/*
+ * This function compares two catch_t structures and returns the appropriate
+ * predefined value, EARLIER if fish a was caught before b, LATER vice versa,
+ * and EQUAL if on the same day. As of this version, 29/04/2022, I am assuming
+ * that ReefCI deos not record times down to the hour. If that does happen,
+ * I will add an enumerated value for values of MORNING, AFTERNOON, etc. in lieu
+ * of an integer hour in 24-hour time for ease of comparison(i.e. bar graphs)
+ */
 
-int compile_time(catch_t *catch) {
-  float tot = 0.0;
-  tot = tot + (float)catch->year;
-  tot = tot + ((float)catch->month / 12);
-  if (catch->year % 4 == 0) {
-    tot = tot + ((float)catch->day / 366);
+int relate_time(catch_t *a, catch_t *b) {
+  if (a->year != b->year) {
+    if (a->year < b->year) {
+      return EARLIER;
+    }
+    else {
+      return LATER;
+    }
   }
   else {
-    tot = tot + ((float)catch->day / 365);
+    if (a->month != b->month) {
+      if (a->month < b->month) {
+        return EARLIER;
+      }
+      else {
+        return LATER;
+      }	
+    }
+    else {
+      if (a->day == b->day) {
+        return EQUAL;
+      }
+      else {
+	if (a->day < b->day) {
+	  return EARLIER;
+	}
+	else {
+	  return LATER;
+	}
+      }
+    }
   }
-  catch->id = tot;
-  return OK;
 }
