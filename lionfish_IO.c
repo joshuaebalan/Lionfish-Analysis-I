@@ -55,3 +55,30 @@ lionfish_t **read_table_file(char *filename) {
     return master;
   }
 }
+/*
+ * This set of functions preps a set of integers for graphing in an external program,
+ * such as Excel or Google Sheets. One works with a single dependent variable, and one works with two.
+ */
+int write_csv_generated_2_param(int len, char *name, char *lbl1, char *lbl2, int *data1, int *data2) {
+  FILE *fp = fopen(name, "w+");
+  if (fp == NULL) {
+    return BAD_TBL_WRITE;
+  }
+  fprintf(fp, "%s,%s\n", lbl1, lbl2);
+  for (int i = 0; i < len; i++) {
+    fprintf(fp, "%d,%d\n", data1[i], data2[i]);
+  }
+  return OK;
+} /* write_csv_generated_2_param() */
+
+int write_csv_generated_3_param(int len, char *name, char *lbl1, char *lbl2, char *lbl3, int *data1, int *data2, int *data3) {
+  FILE *fp = fopen(name, "w+");
+  if (fp == NULL) {
+    return BAD_TBL_WRITE;
+  }
+  fprintf(fp, "%s,%s,%s\n", lbl1, lbl2, lbl3);
+  for (int i = 0; i < len; i++) {
+    fprintf(fp, "%d,%d,%d\n", data1[i], data2[i], data3[i]);
+  }
+  return OK;
+} /* write_csv_generated_3_param() */
