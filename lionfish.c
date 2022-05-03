@@ -55,10 +55,58 @@ int relate_time(catch_t *a, catch_t *b) {
 //These are work in progress functions needed for file reading.
 int enumerate_sex(char *given) {
   printf("%s\n", given);
-  return 3;
+  return UNIDENTIFIED;
 }
 
 catch_t *read_from_writing(char *given) {
   printf("%s\n", given);
   return NULL;
+}
+
+/*
+ * This function aids in the splitting of large lists of lionfish_t
+ * structure pointers and sorting them into groups of similarly dated structures.
+ * The first parameter chooses what kind of time to group by: DAY for day, MONTH
+ * for month, and YEAR for year.  
+ * IMPORTANT OPERATION NOTE: function only looks at the parameter described. For example,
+ * if sorting by month, date of 29-03-2022 will be in the same list as date of 13-03-2010, so
+ * it is recommended to sort by broadest search parameters first. 
+ */
+
+int group_time(int mode, unsigned int identifier, int list_length, lionfish_t **raw, lionfish_t ***sorted) {
+  int fish_found = 0;
+  int cur_fish = 0;
+  lionfish_t **temp_sorted = *(sorted);
+  for (int i = 0; i < list_length; i++) {
+    switch (mode) {
+      case YEAR: {
+        if (raw[i]->time_caught->year == identifier) {
+          temp_sorted[cur_fish] = raw[i];
+          fish_found++;
+          continue;
+        }
+      }
+      case MONTH: {
+        if (raw[i]->time_caught->month == identifier) {
+          temp_sorted[cur_fish] = raw[i];
+          cur_fish++;
+          continue;
+        }
+      }
+      case DAY: {
+        if (raw[i]->time_caught->month == identifier) {
+          temp_sorted[cur_fish] = raw[i];
+          cur_fish++;
+          continue;
+        }
+      }
+    }
+  }
+  if (fish_found != 0) {
+    *(sorted) = temp_sorted;
+    return fish_found;
+  }
+  else {
+    return NO_FISH_FOUND;
+  }
 }
