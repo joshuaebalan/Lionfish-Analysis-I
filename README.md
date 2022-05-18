@@ -16,8 +16,13 @@ This project aims to accomplish the following:
 
 ### Key People/Thanks to:
 1. Dr. Greg Michalski, main advisor
-2. Willie, ReefCI in-house marine biologist and owner of the dataset used in this project
+2. Willie Caal, ReefCI in-house marine biologist and owner of the dataset used in this project
 3. Dr. Jeff Turkstra, for his advice in technical elements of this project
+#### Data entry helpers:
+1. Hanna Fulford
+2. Skylar Guffey
+3. Stefano Parducci
+4, John(Jack) Rodriguez
 
 ### Privacy Statement
 All works here are solely and exclusively intended for use by Purdue University, specifically students under Dr. Greg Michalski of the Purdue University Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
