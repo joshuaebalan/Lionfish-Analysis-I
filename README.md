@@ -22,7 +22,7 @@ This project aims to accomplish the following:
 1. Hanna Fulford
 2. Skylar Guffey
 3. Stefano Parducci
-4, John(Jack) Rodriguez
+4. John(Jack) Rodriguez
 
 ### Privacy Statement
 All works here are solely and exclusively intended for use by Purdue University, specifically students under Dr. Greg Michalski of the Purdue University Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
