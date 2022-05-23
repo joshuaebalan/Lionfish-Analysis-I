@@ -4,10 +4,11 @@
 /* named constants */
 
 #define OK	(0)  //returned on proper function execution
-#define LATER   (2) //See 'relate_time()'
-#define EQUAL	(3) //See 'relate_time()'
+#define MALE   (2) //See README.md
+#define FEMALE	(3) //See 'README.md'
 #define EARLIER (4) //See 'relate_time()'
-
+#define LATER (5) //See 'relate_time()'
+#define EQUAL (6) //See 'relate_time()'
 /* error codes */
 
 #define UH_OH   (-1) //if a point in the program is reached that shouldn't be
@@ -17,10 +18,14 @@
 #define BAD_BIN_WRITE (-5) //error in writing to a binary file
 
 typedef struct lionfish {
-  enum {MALE, FEMALE, UNIDENTIFIED} sex;
+  int sex;
   char *diet;
-  float length;
-  float mass;
+  float length_with_tail;
+  float length_tailless;
+  int has_noodles;
+  int has_eggs;
+  int has_beard;
+  int juvenile;
   struct time *time_caught;
 } lionfish_t;
 

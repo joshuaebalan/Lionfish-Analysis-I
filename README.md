@@ -16,6 +16,17 @@ This project aims to accomplish the following:
 
 ### Data Summary:
 This project uses dissection reports from diver-speared lionfish, which occur once weekly and dissect 10 fish. This spans over the course of about 2 years, and maps 638 dissections. Work is in progress to estimate the amount of lionfish in total this represents using the calculated confidence index, the second column in the .csv files. 
+A basic Lionfish Structure looks like so:
+1. Time structure with the date caught
+2. Index of confidence, calculated by dividing 10 by the total amount of fish caught that day
+3. Length of the fish with tail
+4. Length of the fish without tail
+5. Whether or not the fish has Supraorbital Tentacles(referred hereafter as "noodles" by ReefCI); 1 for yes, 0 for no
+6. Whether or not the fish has a set of rough bumps on the chin, referrred hereafter as "beards" by ReefCI; 1 for yes, 0 for no
+7. Determined sex of the fish, since (6) is a sex-determining trait; 2 for male, 3 for female
+8. Whether or not the fish has eggs; 1 for yes, 0 for no
+9. Whether or not the fish is juvenile based on length(no tail) and sex traits; 1 for yes, 0 for no
+
 ### Key People/Thanks to:
 1. Dr. Greg Michalski, main advisor
 2. Willie Caal, ReefCI in-house marine biologist and owner of the dataset used in this project
