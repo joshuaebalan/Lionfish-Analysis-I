@@ -20,19 +20,25 @@ lionfish_t **read_table_file(char *filename) {
     int f_length = ftell(fp);
     fseek(fp, 0L, SEEK_SET);
     char diet_buf[100] = { 0 };
-    char sex_buf [50] = { 0 };
+    int sex = 0;
+    float length_without = 0.0;
     float length = 0.0;
-    float mass = 0.0;
-    char time[200] = { 0 };
-    int status = 5;
+    unsigned int day = 0;
+    unsigned int month = 0;
+    unsigned int year = 0;
+    int noodles = 2;
+    int beard = 2;
+    int eggs = 2;
+    float confidence = 0.0;
+    int status = 11;
     lionfish_t **master = malloc(8 * f_length);
     assert(master != NULL); 
     int counter = 0;
-    while (status == 5) {
+    while (status == 11) {
       status = fscanf(fp, 
-             "insert key: sex: %49[^ ],diet report: %99[^ ],length %f,mass %f, %199[^\n]\n",
-	     sex_buf, diet_buf, &length, &mass, time);
-      if ((status != 5) && (status != EOF)) {
+             "%d/%d/%d,%f,%f,%f,%d,%d,%d,%d,%99[^\n]\n",
+	     &month, &day, &year, &confidence, &length, &length_without, &noodles, &beard, &sex, &eggs, &diet_buf );
+      if ((status != 11) && (status != EOF)) {
 	return NULL;
       }
       if (status == EOF) {
@@ -40,15 +46,21 @@ lionfish_t **read_table_file(char *filename) {
       }
       lionfish_t *new = malloc(sizeof(struct lionfish));
       assert(new != NULL);
-      new->length = length;
-      new->mass = mass;
-      new->sex = enumerate_sex(sex_buf);
+      new->length_tailess = length_without;
+      new->length_with_tail = length;
+      new->sex = sex;
       new->diet = malloc(strlen(diet_buf) + 1);
       assert(new->diet != NULL);
       strcpy(new->diet, diet_buf);
       new->time_caught = malloc(sizeof(struct time));
       assert(new->time_caught != NULL);
-      new->time_caught = read_from_writing(time);
+      new->time_caught->year = (2000 + year);
+      new->time_caught->month = month;
+      new->time_caught->day = day;
+      new->has_eggs = eggs;
+      new->has_noodles = noodles;
+      new->has_beard = beard;
+      new->confidence = confidence;
       master[counter] = new;
       counter++;
     }

@@ -3,7 +3,9 @@
 
 /* named constants */
 
-#define OK	(0)  //returned on proper function execution
+#define OK	(10000)  //returned on proper function execution
+#define NO (0) //See README.md
+#define YES (1) //See README.md
 #define MALE   (2) //See README.md
 #define FEMALE	(3) //See 'README.md'
 #define EARLIER (4) //See 'relate_time()'
@@ -11,7 +13,8 @@
 #define EQUAL (6) //See 'relate_time()'
 /* error codes */
 
-#define UH_OH   (-1) //if a point in the program is reached that shouldn't be
+#define DIGESTED (-1) //See README.md
+#define UH_OH   (-10000) //if a point in the program is reached that shouldn't be
 #define BAD_TBL_READ (-2) //error in reading a text(i.e. CSV) file
 #define BAD_TBL_WRITE (-3) //error in writing to a text file in tables form.
 #define BAD_BIN_READ (-4) //error in reading from a binary file

@@ -1,12 +1,12 @@
 # Lionfish-Analysis-I
 Purdue Univ. Lionfish Research Project. WORK IN PROGRESS
 
-This is intended for use for the analysis of invasive lionfish culling in Tom's Caye, Placencia, Belize with data from ReefCI, an ecotourism company aiming towards conservation.
+This is intended for use for the analysis of invasive lionfish culling in Tom Owen's Caye, Belize with data from ReefCI, an ecotourism company aiming towards conservation.
 
 ### Background:
-Lionfish are an invasive species in the Carribean, especially surrounding tropical coral reefs. They are native to the tropical waters of the equatorial Pacific in which they have natural predators. However, they are the apex predators here in the East, due to their unnatural origin. First sighted in 2008 by various dive crews, lionfish have become generealistic in their diet, with the current understanding that they "eat anything they can fir in their mouths", according to ReefCI. The most problematic part of this is their culling of the parrotfish population, a keystone species that indirectly ensures the reefs are not snuffed out in their light competition with algae species. 
+Lionfish are an invasive species in the Carribean, especially surrounding tropical coral reefs. They are native to the tropical waters of the equatorial Pacific in which they have natural predators. However, they are the apex predators here in the West, due to their unnatural origin. First sighted in 2008 by various dive crews, lionfish have become generealistic in their diet, with the current understanding that they "eat anything they can fir in their mouths", according to ReefCI. The most problematic part of this is their culling of the parrotfish population, a keystone species that indirectly ensures the reefs are not snuffed out in their light competition with algae species. 
 
-In Placencia specifically, the first invasive lionfish were sighted in 2009, and ReefCI has been killing them ever since. They have also been dissecting them for years, and keeping careful log of the data, which this project hopes to use for greater understanding of their efforts.
+Here specifically, the first invasive lionfish were sighted in 2009, and ReefCI has been killing them ever since. They have also been dissecting them for years, and keeping careful log of the data, which this project hopes to use for greater understanding of their efforts.
 
 ### Project Goal:
 This project aims to accomplish the following:
@@ -26,6 +26,11 @@ A basic Lionfish Structure looks like so:
 7. Determined sex of the fish, since (6) is a sex-determining trait; 2 for male, 3 for female
 8. Whether or not the fish has eggs; 1 for yes, 0 for no
 9. Whether or not the fish is juvenile based on length(no tail) and sex traits; 1 for yes, 0 for no
+10. Stomach content: string of contents, or 0 for empty, -1 for incomprehensibly digested.
+
+On (6) and (8): According to ReefCI, all males have beards and all females eggs; if they do not and are 15 cm or less without tail in length, they are considered juvenile (9).
+
+On (5): The purpose of noodles are unclear; this project hopes to confirm or invalidate the hypothesis that noodles are more prevalent in juveniles.
 
 ### Key People/Thanks to:
 1. Dr. Greg Michalski, main advisor
