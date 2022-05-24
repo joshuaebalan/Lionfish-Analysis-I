@@ -37,7 +37,7 @@ lionfish_t **read_table_file(char *filename) {
     while (status == 11) {
       status = fscanf(fp, 
              "%d/%d/%d,%f,%f,%f,%d,%d,%d,%d,%99[^\n]\n",
-	     &month, &day, &year, &confidence, &length, &length_without, &noodles, &beard, &sex, &eggs, &diet_buf );
+	     &month, &day, &year, &confidence, &length, &length_without, &noodles, &beard, &sex, &eggs, diet_buf );
       if ((status != 11) && (status != EOF)) {
 	return NULL;
       }
@@ -46,7 +46,7 @@ lionfish_t **read_table_file(char *filename) {
       }
       lionfish_t *new = malloc(sizeof(struct lionfish));
       assert(new != NULL);
-      new->length_tailess = length_without;
+      new->length_tailless = length_without;
       new->length_with_tail = length;
       new->sex = sex;
       new->diet = malloc(strlen(diet_buf) + 1);
@@ -61,6 +61,12 @@ lionfish_t **read_table_file(char *filename) {
       new->has_noodles = noodles;
       new->has_beard = beard;
       new->confidence = confidence;
+      if ((length_without <= 15) || ((beard == 0) && (eggs = 0))) {
+        new->juvenile = 1;
+      }
+      else {
+        new->juvenile = 0;
+      }
       master[counter] = new;
       counter++;
     }

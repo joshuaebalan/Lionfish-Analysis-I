@@ -29,6 +29,7 @@ typedef struct lionfish {
   int has_eggs;
   int has_beard;
   int juvenile;
+  float confidence;
   struct time *time_caught;
 } lionfish_t;
 
