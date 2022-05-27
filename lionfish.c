@@ -17,9 +17,9 @@ int main() {
     }
     printf("first fish size: %f\n", master[0]->length_with_tail);
     //printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
-    int desired_sex = 2;
+    int desired_sex = 3;
     printf("Writing to file 'noodle_pct_%dsex.csv...\n", desired_sex);
-    write_csv_noodle_dist_with_sex(master, "noodle_pct_2sex.csv", desired_sex);
+    write_csv_noodle_dist_with_sex(master, "noodle_pct_3sex.csv", desired_sex);
     printf("Done!\n");
   }
   return OK;
