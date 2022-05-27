@@ -6,6 +6,17 @@
 
 int main() {
   printf("compiles successfully!\n");
+  printf("read MASTER?[0/1]\n");
+  int read = 0;
+  char buf = ' ';
+  scanf("%d%c", &read, &buf);
+  if (read != 0) {
+    lionfish_t **master = read_table_file("MASTER_DATA.csv");
+    if (master == NULL) {
+      return UH_OH;
+    }
+    printf("first fish size: %f\n", master[0]->length_with_tail);
+  }
   return OK;
 }
 
