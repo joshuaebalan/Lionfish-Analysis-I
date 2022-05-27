@@ -16,7 +16,11 @@ int main() {
       return UH_OH;
     }
     printf("first fish size: %f\n", master[0]->length_with_tail);
-    printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638)); 
+    //printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
+    int desired_sex = 3;
+    printf("Writing to file 'noodle_pct_%dsex.csv...\n", desired_sex);
+    write_csv_noodle_dist_with_sex(master, "noodle_pct_3sex.csv", desired_sex);
+    printf("Done!\n");
   }
   return OK;
 }
@@ -74,12 +78,17 @@ catch_t *read_from_writing(char *given) {
   printf("%s\n", given);
   return NULL;
 }
+/*
+ * I mainly used this function as plug & play to gather the noodle statistics.
+ * I would simply alter the variables in the if block for the parameters that I wanted.
+ */
 
 double compute_noodle_percentage(lionfish_t** given, int size) {
   double total = 0.0;
   int pop = 0;
   for (int i = 0; i < size; i++) {
-    if ((given[i]->juvenile == 0) && (given[i]->sex != 2) && (given[i]->sex != 3)) {
+    if ((given[i]->juvenile == 1) && (given[i]->sex == 2)) {
+      //Line 88 is meant for debugging in the .csv file for if I put in impossible parameters, such as having a noodle value that is not 0 or 1.
       printf("noodles: %d, beard: %d, sex: %d, number: %d\n", given[i]->has_noodles, given[i]->has_beard, given[i]->sex, i);
       pop++;
       total = total + given[i]->has_noodles;
@@ -91,5 +100,25 @@ double compute_noodle_percentage(lionfish_t** given, int size) {
   }
   else {
     return 0.0;
+  }
+}
+
+double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t** given, int file_size, double size_wanted, int sex) {
+  double total = 0.0;
+  int pop = 0;
+  for (int i = 0; i < file_size; i++) {
+    if ((given[i]->length_tailless < (size_wanted + 0.25)) && (given[i]->length_tailless > (size_wanted - 0.25)) && (given[i]->sex == sex)) {
+      //Line 88 is meant for debugging in the .csv file for if I put in impossible parameters, such as having a noodle value that is not 0 or 1.
+      //printf("noodles: %d, beard: %d, sex: %d, number: %d\n", given[i]->has_noodles, given[i]->has_beard, given[i]->sex, i);
+      pop++;
+      total = total + given[i]->has_noodles;
+    }
+  }
+  //printf("Total applicable: %d\n", pop);
+  if (pop == 0) {
+    return 0.0;
+  }
+  else {
+    return (100 * (total / pop));
   }
 }
