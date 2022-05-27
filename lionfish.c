@@ -16,6 +16,7 @@ int main() {
       return UH_OH;
     }
     printf("first fish size: %f\n", master[0]->length_with_tail);
+    printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638)); 
   }
   return OK;
 }
@@ -72,4 +73,23 @@ int enumerate_sex(char *given) {
 catch_t *read_from_writing(char *given) {
   printf("%s\n", given);
   return NULL;
+}
+
+double compute_noodle_percentage(lionfish_t** given, int size) {
+  double total = 0.0;
+  int pop = 0;
+  for (int i = 0; i < size; i++) {
+    if ((given[i]->juvenile == 0) && (given[i]->sex != 2) && (given[i]->sex != 3)) {
+      printf("noodles: %d, beard: %d, sex: %d, number: %d\n", given[i]->has_noodles, given[i]->has_beard, given[i]->sex, i);
+      pop++;
+      total = total + given[i]->has_noodles;
+    }
+  }
+  printf("Total applicable: %d\n", pop);
+  if (pop > 0) {
+    return (100 * (total / pop));
+  }
+  else {
+    return 0.0;
+  }
 }

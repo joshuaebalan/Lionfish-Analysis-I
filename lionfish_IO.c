@@ -16,9 +16,7 @@ lionfish_t **read_table_file(char *filename) {
     return NULL;
   }
   else {
-    fseek(fp, 0L, SEEK_END);
-    int f_length = ftell(fp);
-    fseek(fp, 0L, SEEK_SET);
+    int f_length = 639;
     char diet_buf[100] = { 0 };
     int sex = 0;
     float length_without = 0.0;
