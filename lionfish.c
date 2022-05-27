@@ -17,9 +17,9 @@ int main() {
     }
     printf("first fish size: %f\n", master[0]->length_with_tail);
     //printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
-    int desired_sex = 3;
+    int desired_sex = 2;
     printf("Writing to file 'noodle_pct_%dsex.csv...\n", desired_sex);
-    write_csv_noodle_dist_with_sex(master, "noodle_pct_3sex.csv", desired_sex);
+    write_csv_noodle_dist_with_sex(master, "noodle_pct_2sex.csv", desired_sex);
     printf("Done!\n");
   }
   return OK;
@@ -103,7 +103,7 @@ double compute_noodle_percentage(lionfish_t** given, int size) {
   }
 }
 
-double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t** given, int file_size, double size_wanted, int sex) {
+double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t** given, int file_size, double size_wanted, int sex, int *popp) {
   double total = 0.0;
   int pop = 0;
   for (int i = 0; i < file_size; i++) {
@@ -116,9 +116,11 @@ double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t** given, int fi
   }
   //printf("Total applicable: %d\n", pop);
   if (pop == 0) {
+    (*popp) = 0;
     return 0.0;
   }
   else {
+    (*popp) = pop;
     return (100 * (total / pop));
   }
 }

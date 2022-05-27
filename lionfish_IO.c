@@ -82,10 +82,11 @@ int write_csv_noodle_dist_with_sex(lionfish_t** master, char *name, int sex) {
   }
   float i = 10.0;
   while (i < 40.0) {
-    float j = compute_noodle_percentage_by_fish_size_and_sex(master, 638, i, sex);
+    int tot = 0;
+    float j = compute_noodle_percentage_by_fish_size_and_sex(master, 638, i, sex, &tot);
     printf("for i = %f, j = %f.\n", i, j); 
-    fprintf(fp, "%f,%f\n", i, j);
-    printf("Printed row '%f,%f successfully.\n", i, compute_noodle_percentage_by_fish_size_and_sex(master, 638, i, sex));
+    fprintf(fp, "%f,%f,%d\n", i, j, tot);
+    //printf("Printed row '%f,%f successfully.\n", i, compute_noodle_percentage_by_fish_size_and_sex(master, 638, i, sex, &tot));
     i = i + 0.5;
   }
   return OK;
