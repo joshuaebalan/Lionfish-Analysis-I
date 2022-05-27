@@ -15,11 +15,11 @@ int main() {
     if (master == NULL) {
       return UH_OH;
     }
-    printf("first fish size: %f\n", master[0]->length_with_tail);
+    //printf("first fish size: %f\n", master[0]->length_with_tail);
     //printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
-    int desired_sex = 3;
-    printf("Writing to file 'noodle_pct_%dsex.csv...\n", desired_sex);
-    write_csv_noodle_dist_with_sex(master, "noodle_pct_3sex.csv", desired_sex);
+    //int desired_sex = 3;
+    printf("Writing to file 'sex_dist.csv...\n");
+    write_csv_sex_dist(master, "sex_dist.csv");
     printf("Done!\n");
   }
   return OK;
@@ -125,15 +125,17 @@ double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t** given, int fi
   }
 }
 
-double compute_femae_percentage_by_fish_size(lionfish_t** given, int file_size, double size_wanted, int *popp) {
+double compute_female_percentage_by_time(lionfish_t** given, int file_size, int month, int year, int *popp) {
   double total = 0.0;
   int pop = 0;
   for (int i = 0; i < file_size; i++) {
-    if ((given[i]->length_tailless < (size_wanted + 0.25)) && (given[i]->length_tailless > (size_wanted - 0.25)) && (given[i]->sex == sex)) {
+    if ((given[i]->time_caught->year == year) && (given[i]->time_caught->month == month)) {
       //Line 88 is meant for debugging in the .csv file for if I put in impossible parameters, such as having a noodle value that is not 0 or 1.
       //printf("noodles: %d, beard: %d, sex: %d, number: %d\n", given[i]->has_noodles, given[i]->has_beard, given[i]->sex, i);
       pop++;
-      total = total + given[i]->has_noodles;
+      if (given[i]->sex == 3) {
+        total = total + 1.0;
+      }
     }
   }
   //printf("Total applicable: %d\n", pop);

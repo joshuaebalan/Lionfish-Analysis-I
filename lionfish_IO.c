@@ -97,14 +97,23 @@ int write_csv_sex_dist(lionfish_t** master, char *name) {
   if (fp == NULL) {
     return BAD_TBL_WRITE;
   }
-  float i = 10.0;
-  while (i < 40.0) {
+  int month = 1;
+  int year = 2020;
+  while (year <= 2022) {
     int tot = 0;
-    float j = compute_noodle_percentage_by_fish_size_and_sex(master, 638, i, sex, &tot);
-    printf("for i = %f, j = %f.\n", i, j); 
-    fprintf(fp, "%f,%f,%d\n", i, j, tot);
-    //printf("Printed row '%f,%f successfully.\n", i, female_percentage_by_fish_size(master, 638, i, &tot));
-    i = i + 0.5;
+    float j = compute_female_percentage_by_time(master, 638, month, year, &tot);
+    printf("for month = %d and year %d, j = %f.\n", month, year, j); 
+    fprintf(fp, "%d/%d,%f,%d\n", month, year, j, tot);
+    if (month == 12) {
+      month = 1;
+      year = year + 1;
+    }
+    else if ((month == 6) && (year == 2022)) { //stop writing since data stops at May 2022
+      return OK;
+    }
+    else {
+      month++;
+    }
   }
   return OK;
 } /* write_csv_generated_2_param() */
