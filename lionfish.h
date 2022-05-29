@@ -48,6 +48,7 @@ catch_t *read_from_writing(char *);
 double compute_noodle_percentage(lionfish_t**, int);
 double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t**, int, double, int, int* );
 double compute_female_percentage_by_time(lionfish_t**, int, int, int, int*);
+void calculate_length_data(lionfish_t**, int);
 /* functions inside lionfish_IO.c */
 
 lionfish_t **read_table_file(char *);

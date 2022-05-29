@@ -18,13 +18,92 @@ int main() {
     //printf("first fish size: %f\n", master[0]->length_with_tail);
     //printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
     //int desired_sex = 3;
-    printf("Writing to file 'sex_dist.csv...\n");
-    write_csv_sex_dist(master, "sex_dist.csv");
-    printf("Done!\n");
+    //printf("Writing to file 'sex_dist.csv...\n");
+    //write_csv_sex_dist(master, "sex_dist.csv");
+    //printf("Done!\n");
+    calculate_length_data(master, 638);
   }
   return OK;
 }
 
+void calculate_length_data(lionfish_t** given, int size) {
+  double min_male = 1000.0;
+  double max_male = 0.0;
+  double min_female = 1000.0;
+  double max_female = 0.0;
+  double total_male = 0.0;
+  double total_female = 0.0;
+  double min_male_tail = 1000.0;
+  double max_male_tail = 0.0;
+  double min_female_tail = 1000.0;
+  double max_female_tail = 0.0;
+  double temp_tail = 0.0;
+  double total_tail_male = 0.0;
+  double total_tail_female = 0.0;
+  int male_count = 0;
+  int female_count = 0;
+  for (int i = 0; i < size; i++) {
+    if (given[i]->juvenile != 0) {
+      continue;
+    }
+    else if (given[i]->sex == 2) {
+      male_count++;
+      if (given[i]->length_with_tail > given[i]->length_tailless) {
+        printf("Bad Tail on #%d!", i);
+      temp_tail = (given[i]->length_with_tail - given[i]->length_tailless);
+      if (given[i]->length_tailless < min_male) {
+        min_male = given[i]->length_tailless;
+      }
+      if (given[i]->length_tailless > max_male) {
+        max_male = given[i]->length_tailless;
+      }
+      if (temp_tail < min_male_tail) {
+        min_male_tail = temp_tail;
+      }
+      if (temp_tail > max_male_tail) {
+        max_male_tail = temp_tail;
+      }
+      total_male = total_male + given[i]->length_tailless;
+      total_tail_male = total_tail_male + temp_tail;
+    }
+    else if (given[i]->sex == 3) {
+      female_count++;
+      temp_tail = (given[i]->length_with_tail - given[i]->length_tailless);
+      if (given[i]->length_tailless > max_female) {
+        max_female = given[i]->length_tailless;
+      }
+      if (given[i]->length_tailless < min_female) {
+        min_female = given[i]->length_tailless;
+      }
+      if (temp_tail > max_female_tail) {
+        max_female_tail = temp_tail;
+      }
+      if (temp_tail < min_female_tail) {
+        min_female_tail = temp_tail;
+      }
+      total_female = total_female + given[i]->length_tailless;
+      total_tail_female = total_tail_female + temp_tail;
+    }
+    else {
+      printf("Something's wrong!\n"); //Should never be reached
+    }
+  }
+  if ((male_count != 0) && (female_count != 0)) {
+  double average_male = (total_male / male_count);
+  double average_female = (total_female / female_count);
+  double average_tail_male = (total_tail_male / male_count);
+  double average_tail_female = (total_tail_female / female_count);
+  printf("Bodies(Without Tail):\n");
+  printf("Males: min(adult) = %f, max = %f, average = %f, out of %d applicable.\n", min_male, max_male, average_male, male_count);
+  printf("Females: min(adult) = %f, max = %f, average = %f, out of %d.\n", min_female, max_female, average_female, female_count);
+  printf("\nTails:\n");
+  printf("Males: min = %f, max = %f, average = %f.\n", min_male_tail, max_male_tail, average_tail_male);
+  printf("Females: min = %f, max = %f, average = %f.\n", min_female_tail, max_female_tail, average_tail_female);
+  }
+  else {
+    printf("No males or no females to analyze!\n");
+  }
+}
 /*
  * This function compares two catch_t structures and returns the appropriate
  * predefined value, EARLIER if fish a was caught before b, LATER vice versa,
