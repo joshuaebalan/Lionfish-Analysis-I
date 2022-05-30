@@ -48,8 +48,9 @@ void calculate_length_data(lionfish_t** given, int size) {
     }
     else if (given[i]->sex == 2) {
       male_count++;
-      if (given[i]->length_with_tail > given[i]->length_tailless) {
-        printf("Bad Tail on #%d!", i);
+      if (given[i]->length_with_tail < given[i]->length_tailless) {
+        printf("Bad Tail on #%d!\n", i);
+      }
       temp_tail = (given[i]->length_with_tail - given[i]->length_tailless);
       if (given[i]->length_tailless < min_male) {
         min_male = given[i]->length_tailless;
@@ -69,6 +70,9 @@ void calculate_length_data(lionfish_t** given, int size) {
     else if (given[i]->sex == 3) {
       female_count++;
       temp_tail = (given[i]->length_with_tail - given[i]->length_tailless);
+      if (temp_tail < 0) {
+        printf("Bad tail on #%d!\n", i);
+      }
       if (given[i]->length_tailless > max_female) {
         max_female = given[i]->length_tailless;
       }
