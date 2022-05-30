@@ -63,6 +63,7 @@ void calculate_length_data(lionfish_t** given, int size) {
       }
       if (temp_tail > max_male_tail) {
         max_male_tail = temp_tail;
+        printf("max tail on #%d!\n", i);
       }
       total_male = total_male + given[i]->length_tailless;
       total_tail_male = total_tail_male + temp_tail;
