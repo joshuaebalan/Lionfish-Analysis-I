@@ -15,7 +15,8 @@ This project aims to accomplish the following:
 3. Should an unexplainable trend exist, further investigate and potentially organize an experiment for ReefCI.
 
 ### Data Summary:
-This project uses dissection reports from diver-speared lionfish, which occur once weekly and dissect 10 fish. This spans over the course of about 2 years, and maps 638 dissections. Work is in progress to estimate the amount of lionfish in total this represents using the calculated confidence index, the second column in the .csv files. 
+This project uses dissection reports from diver-speared lionfish, which occur once weekly and dissect 10 fish. This spans over the course of about 2 years, and maps 638 dissections. Work is in progress to estimate the amount of lionfish in total this represents using the calculated confidence index, the second column in the .csv files. Additional findings may be found [here](https://docs.google.com/document/d/1qu2WIQ-7aA__ScxEGOMaAXd8uJPbYX2bNggdvtRtEPU/edit?usp=sharing).
+
 A basic Lionfish Structure looks like so:
 1. Time structure with the date caught
 2. Index of confidence, calculated by dividing 10 by the total amount of fish caught that day
