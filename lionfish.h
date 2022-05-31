@@ -42,8 +42,6 @@ typedef struct time {
 
 int main();
 int relate_time(catch_t *, catch_t *);
-int enumerate_sex(char *);
-catch_t *read_from_writing(char *);
 
 double compute_noodle_percentage(lionfish_t**, int);
 double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t**, int, double, int, int* );

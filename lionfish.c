@@ -152,37 +152,38 @@ int relate_time(catch_t *a, catch_t *b) {
   }
 } /* relate_time() */
 
-//These are work in progress functions needed for file reading.
-int enumerate_sex(char *given) {
-  printf("%s\n", given);
-  return 3;
-}
-
-catch_t *read_from_writing(char *given) {
-  printf("%s\n", given);
-  return NULL;
-}
 /*
- * I mainly used this function as plug & play to gather the noodle statistics.
- * I would simply alter the variables in the if block for the parameters that I wanted.
+ * This function returns the percentage of lionfish that have noodles, as a decimal, based on user-prompted filters.
+ * As a safety/data reliability measure, this function prints the total lionfish which can be found under the filter,
+ * so that the user can be forewarned if a low-integrity cross-section is used.
  */
 
 double compute_noodle_percentage(lionfish_t** given, int size) {
   double total = 0.0;
   int pop = 0;
+  int read = 0;
+  int read2 = 0;
+  char buf = ' ';
+  printf("Include juveniles? [0/1]\n");
+  scanf("%d%c", &read, &buf);
+  printf("Filter by sex?[0(no)/2(male only)/3(female only)\n");
+  scanf("%d%c", &read2, &buf);
   for (int i = 0; i < size; i++) {
-    if ((given[i]->juvenile == 1) && (given[i]->sex == 2)) {
-      //Line 88 is meant for debugging in the .csv file for if I put in impossible parameters, such as having a noodle value that is not 0 or 1.
-      printf("noodles: %d, beard: %d, sex: %d, number: %d\n", given[i]->has_noodles, given[i]->has_beard, given[i]->sex, i);
-      pop++;
-      total = total + given[i]->has_noodles;
+    if ((read == 0) && (given[i]->juvenile == 1)) {
+      continue;
+    } 
+    if ((read2 != 0) && (given[i]->sex != read2)) {
+      continue;
     }
+    pop++;
+    total = total + given[i]->has_noodles;
   }
   printf("Total applicable: %d\n", pop);
   if (pop > 0) {
     return (100 * (total / pop));
   }
   else {
+    printf("No fish matched your given criteria!\n");
     return 0.0;
   }
 }
