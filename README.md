@@ -15,7 +15,8 @@ This project aims to accomplish the following:
 3. Should an unexplainable trend exist, further investigate and potentially organize an experiment for ReefCI.
 
 ### Data Summary:
-This project uses dissection reports from diver-speared lionfish, which occur once weekly and dissect 10 fish. This spans over the course of about 2 years, and maps 638 dissections. Work is in progress to estimate the amount of lionfish in total this represents using the calculated confidence index, the second column in the .csv files. 
+This project uses dissection reports from diver-speared lionfish, which occur once weekly and dissect 10 fish. This spans over the course of about 2 years, and maps 638 dissections. Work is in progress to estimate the amount of lionfish in total this represents using the calculated confidence index, the second column in the .csv files. Additional findings may be found [here](https://docs.google.com/document/d/1qu2WIQ-7aA__ScxEGOMaAXd8uJPbYX2bNggdvtRtEPU/edit?usp=sharing).
+
 A basic Lionfish Structure looks like so:
 1. Time structure with the date caught
 2. Index of confidence, calculated by dividing 10 by the total amount of fish caught that day
@@ -36,11 +37,11 @@ On (5): The purpose of noodles are unclear; this project hopes to confirm or inv
 1. Dr. Greg Michalski, main advisor
 2. Willie Caal, ReefCI in-house marine biologist and owner of the dataset used in this project
 3. Dr. Jeff Turkstra, for his advice in technical elements of this project
+4. Skylar Guffey, for her assistance in data entry and her consultation on biological aspects of this project
 #### Data entry helpers:
 1. Hanna Fulford
-2. Skylar Guffey
-3. Stefano Parducci
-4. John(Jack) Rodriguez
+2. Stefano Parducci
+3. John(Jack) Rodriguez
 
 ### Privacy Statement
 All works here are solely and exclusively intended for use by Purdue University, specifically students under Dr. Greg Michalski of the Purdue University Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
