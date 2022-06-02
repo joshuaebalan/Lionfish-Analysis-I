@@ -1,5 +1,4 @@
 # Lionfish-Analysis-I
-Purdue Univ. Lionfish Research Project. WORK IN PROGRESS
 
 This is intended for use for the analysis of invasive lionfish culling in Tom Owen's Caye, Belize with data from ReefCI, an ecotourism company aiming towards conservation.
 
