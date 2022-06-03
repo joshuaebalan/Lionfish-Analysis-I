@@ -42,5 +42,9 @@ On (5): The purpose of noodles are unclear; this project hopes to confirm or inv
 2. Stefano Parducci
 3. John(Jack) Rodriguez
 
+### Intended Release
+
+At the completion of this project, the prospective plan is to format all tools into one single .exe file, which will automatically carry out the calculations that I did for my statistics, such that ReefCI or other keys in the Carribean may use my formatting to further understand the lionfish population. Additionally, I hope to derive future experiments such that ReefCI may re-establish their mission of conservation via the means of civilian science, a goal which was hindered by controversy years ago.
+
 ### Privacy Statement
 All works here are solely and exclusively intended for use by Purdue University, specifically students under Dr. Greg Michalski of the Purdue University Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
