@@ -4,8 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 /*
- * This function reads in a file(note 30-04-2022: assuming data is in .csv
- * foramt, I will end up changing the key string upon aquisition of the data),
+ * This function reads in a file in the .csv format described by README.md,
  * then returns an array of pointers to dynamically allocated lionfish_t
  * structures, unordered. Returns NULL on failure.
  */
@@ -75,7 +74,9 @@ lionfish_t **read_table_file(char *filename) {
  * This set of functions preps a set of integers for graphing in an external program,
  * such as Excel or Google Sheets. One works with a single dependent variable, and one works with two.
  */
-int write_csv_noodle_dist_with_sex(lionfish_t** master, char *name, int sex) {
+
+//TODO: make this function flexible with the functions presented in lionfish.c; all should include pop pointers
+int write_csv_length_tailless_organized(lionfish_t** master, char *name, int sex) {
   FILE *fp = fopen(name, "w");
   if (fp == NULL) {
     return BAD_TBL_WRITE;
@@ -92,7 +93,9 @@ int write_csv_noodle_dist_with_sex(lionfish_t** master, char *name, int sex) {
   return OK;
 } /* write_csv_generated_2_param() */
 
-int write_csv_sex_dist(lionfish_t** master, char *name) {
+
+
+int write_csv_time_organized(lionfish_t** master, char *name) {
   FILE *fp = fopen(name, "w");
   if (fp == NULL) {
     return BAD_TBL_WRITE;

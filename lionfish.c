@@ -3,10 +3,10 @@
 #include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
-  printf("compiles successfully!\n");
-  printf("read MASTER?[0/1]\n");
+  printf("Welcome to the Automated Lionfish Dissection Analysis Wizard! MASTER_DATA.csv ready to be read?[0/1]\n");
   int read = 0;
   char buf = ' ';
   scanf("%d%c", &read, &buf);
@@ -15,14 +15,27 @@ int main() {
     if (master == NULL) {
       return UH_OH;
     }
-    //printf("first fish size: %f\n", master[0]->length_with_tail);
+    printf("Confirmation: the first fish size listed(with tail) is %f cm. If this is not correct, please terminate with ctrl+C and check your MASTER_DATA.csv file!\n", master[0]->length_with_tail);
     //printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
     //int desired_sex = 3;
     //printf("Writing to file 'sex_dist.csv...\n");
     //write_csv_sex_dist(master, "sex_dist.csv");
     //printf("Done!\n");
-    calculate_length_data(master, 638);
+    //calculate_length_data(master, 638);
+    
+    int tot;
+    for (int i = 0; i < 638; i++) {
+      int x = string_analysis((master[i]->diet), 1);
+      if (x > 0) {
+        tot = tot + x;
+        printf("Lionfish #%d ate %d shrimp, running total is %d!\n", (i + 1), x, tot);
+      }
+    }
+    printf("Total shrimp damage done: %d\n", tot); 
   }
+  /*else {
+    printf("Please recompile when ready. Instructions are listed in README.md if needed!\n");
+  }*/
   return OK;
 }
 
@@ -112,10 +125,7 @@ void calculate_length_data(lionfish_t** given, int size) {
 /*
  * This function compares two catch_t structures and returns the appropriate
  * predefined value, EARLIER if fish a was caught before b, LATER vice versa,
- * and EQUAL if on the same day. As of this version, 29/04/2022, I am assuming
- * that ReefCI deos not record times down to the hour. If that does happen,
- * I will add an enumerated value for values of MORNING, AFTERNOON, etc. in lieu
- * of an integer hour in 24-hour time for ease of comparison(i.e. bar graphs)
+ * and EQUAL if on the same day. ReefCI's time statistics were too unreliable to use in this version.
  */
 
 int relate_time(catch_t *a, catch_t *b) {
@@ -155,7 +165,8 @@ int relate_time(catch_t *a, catch_t *b) {
 /*
  * This function returns the percentage of lionfish that have noodles, as a decimal, based on user-prompted filters.
  * As a safety/data reliability measure, this function prints the total lionfish which can be found under the filter,
- * so that the user can be forewarned if a low-integrity cross-section is used.
+ * so that the user can be forewarned if a low-integrity cross-section is used. Other functions in this project utilize
+ * an additional parameter, a pointer to an integer, to graph the total applicable lionfish to each point in lieu of printing.
  */
 
 double compute_noodle_percentage(lionfish_t** given, int size) {
@@ -186,8 +197,13 @@ double compute_noodle_percentage(lionfish_t** given, int size) {
     printf("No fish matched your given criteria!\n");
     return 0.0;
   }
-}
+} /* compute_noodle_percentage() */
 
+/*
+ * This function operates similarly to the last, but uses the integer pointer as well as length specification. This function is chiefly called in the 
+ * lionfish_IO.c file, which iterates with a for (){} loop each length of lionfish; such that these graphs can be formed. See header on that function
+ * for further explanation.
+ */
 double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t** given, int file_size, double size_wanted, int sex, int *popp) {
   double total = 0.0;
   int pop = 0;
@@ -208,7 +224,7 @@ double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t** given, int fi
     (*popp) = pop;
     return (100 * (total / pop));
   }
-}
+} /* compute_noodle_percentage_by_fish_size_and_sex() */
 
 double compute_female_percentage_by_time(lionfish_t** given, int file_size, int month, int year, int *popp) {
   double total = 0.0;
@@ -232,4 +248,23 @@ double compute_female_percentage_by_time(lionfish_t** given, int file_size, int 
     (*popp) = pop;
     return (100 * (total / pop));
   }
+}
+
+int string_analysis(char * given, int req) {
+  if (req == 1) {
+    if ((given[0] == '-') || (given[0] == '0')) {
+      return -50000;
+    }
+    char c = ' ';
+    for (int i = 0; i < strlen(given); i++) {
+      if ((given[i] == 's') && (given[(i + 1)] = 'h') && (given[(i + 2)]  == 'r')) {
+        //printf("%c\n", given[(i - 2)]);
+        c = (given[(i - 2)]);
+        int x = 0;
+        sscanf(&c, "%d", &x);
+        return x;
+      }
+    }
+  }
+  return -50000;
 }

@@ -47,9 +47,10 @@ double compute_noodle_percentage(lionfish_t**, int);
 double compute_noodle_percentage_by_fish_size_and_sex(lionfish_t**, int, double, int, int* );
 double compute_female_percentage_by_time(lionfish_t**, int, int, int, int*);
 void calculate_length_data(lionfish_t**, int);
+int string_analysis(char *, int);
 /* functions inside lionfish_IO.c */
 
 lionfish_t **read_table_file(char *);
-int write_csv_noodle_dist_with_sex(lionfish_t**, char*, int);
-int write_csv_sex_dist(lionfish_t**, char*);
+int write_csv_length_tailless_organized(lionfish_t**, char*, int);
+int write_csv_time_organized(lionfish_t**, char*);
 #endif //LIONFISH_H
