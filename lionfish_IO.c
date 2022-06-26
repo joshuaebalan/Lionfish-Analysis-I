@@ -1,8 +1,4 @@
 #include "lionfish.h"
-#include <assert.h>
-#include <malloc.h>
-#include <stdio.h>
-#include <string.h>
 /*
  * This function reads in a file in the .csv format described by README.md,
  * then returns an array of pointers to dynamically allocated lionfish_t
@@ -70,6 +66,20 @@ lionfish_t **read_table_file(char *filename) {
     return master;
   }
 }
+int append_to_master(lionfish_t **addto, char *name, int count) {
+  FILE *fp = fopen(name, "a");
+  if (fp == NULL) {
+    return BAD_TBL_WRITE;
+  }
+  for (int i = 0; i < count; i++) {
+    fseek(fp, 0L, SEEK_END);
+    fprintf(fp, "%d/%d/%d,%f,%f,%f,%d,%d,%d,%d,%s,\n", addto[i]->time_caught->month, addto[i]->time_caught->day, addto[i]->time_caught->year, addto[i]->confidence, addto[i]->length_with_tail, addto[i]->length_tailless, addto[i]->has_noodles, addto[i]->has_beard, addto[i]->sex, addto[i]->has_eggs, addto[i]->diet);
+  }
+  printf("Added %d new lines to %s!\n", count, name);
+  return OK;
+}
+
+    
 /*
  * This set of functions preps a set of integers for graphing in an external program,
  * such as Excel or Google Sheets. One works with a single dependent variable, and one works with two.

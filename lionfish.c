@@ -1,11 +1,5 @@
 #include "lionfish.h"
-#include <assert.h>
-#include <malloc.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-int main() {
+/*int main() {
   printf("Welcome to the Automated Lionfish Dissection Analysis Wizard! MASTER_DATA.csv ready to be read?[0/1]\n");
   int read = 0;
   char buf = ' ';
@@ -16,12 +10,12 @@ int main() {
       return UH_OH;
     }
     printf("Confirmation: the first fish size listed(with tail) is %f cm. If this is not correct, please terminate with ctrl+C and check your MASTER_DATA.csv file!\n", master[0]->length_with_tail);
-    //printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
-    //int desired_sex = 3;
-    //printf("Writing to file 'sex_dist.csv...\n");
-    //write_csv_sex_dist(master, "sex_dist.csv");
-    //printf("Done!\n");
-    //calculate_length_data(master, 638);
+    printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
+    int desired_sex = 3;
+    printf("Writing to file 'sex_dist.csv...\n");
+    write_csv_sex_dist(master, "sex_dist.csv");
+    printf("Done!\n");
+    calculate_length_data(master, 638);
     
     int tot;
     for (int i = 0; i < 638; i++) {
@@ -33,11 +27,12 @@ int main() {
     }
     printf("Total shrimp damage done: %d\n", tot); 
   }
-  /*else {
+  else {
     printf("Please recompile when ready. Instructions are listed in README.md if needed!\n");
-  }*/
+  }
   return OK;
-}
+} */
+ 
 
 void calculate_length_data(lionfish_t** given, int size) {
   double min_male = 1000.0;
