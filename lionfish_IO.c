@@ -92,13 +92,19 @@ int write_csv_length_tailless_organized(lionfish_t** master, char *name, int sex
     return BAD_TBL_WRITE;
   }
   float i = 10.0;
-  while (i < 40.0) {
+  //int tot = 0;
+  while (i < 70.0) {
     int tot = 0;
-    float j = compute_noodle_percentage_by_fish_size_and_sex(master, 638, i, sex, &tot);
-    printf("for i = %f, j = %f.\n", i, j); 
-    fprintf(fp, "%f,%f,%d\n", i, j, tot);
+    //float j = compute_noodle_percentage_by_fish_size_and_sex(master, 638, i, sex, &tot);
+    //printf("for i = %f, j = %f.\n", i, j); 
+    for (int j = 0; j < 638; j++) {
+      if ((master[j]->length_with_tail >= i) && (master[j]->length_with_tail < (i + 5))) {
+        tot++;
+      }
+    }
     //printf("Printed row '%f,%f successfully.\n", i, compute_noodle_percentage_by_fish_size_and_sex(master, 638, i, sex, &tot));
-    i = i + 0.5;
+    fprintf(fp, "%f, %d\n", i, tot);
+    i = i + 5;
   }
   return OK;
 } /* write_csv_generated_2_param() */

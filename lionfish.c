@@ -1,37 +1,28 @@
 #include "lionfish.h"
-/*int main() {
+int main() {
   printf("Welcome to the Automated Lionfish Dissection Analysis Wizard! MASTER_DATA.csv ready to be read?[0/1]\n");
   int read = 0;
   char buf = ' ';
   scanf("%d%c", &read, &buf);
   if (read != 0) {
-    lionfish_t **master = read_table_file("MASTER_DATA.csv");
+    lionfish_t **master = read_table_file("DATA2.csv");
     if (master == NULL) {
       return UH_OH;
     }
     printf("Confirmation: the first fish size listed(with tail) is %f cm. If this is not correct, please terminate with ctrl+C and check your MASTER_DATA.csv file!\n", master[0]->length_with_tail);
-    printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
-    int desired_sex = 3;
-    printf("Writing to file 'sex_dist.csv...\n");
-    write_csv_sex_dist(master, "sex_dist.csv");
-    printf("Done!\n");
-    calculate_length_data(master, 638);
+    //printf("Total noodle percentage: %2f", compute_noodle_percentage(master, 638));
+    //int desired_sex = 3;
+    printf("Writing to file 'tail_len_dist.csv...\n");
+    write_csv_length_tailless_organized(master, "tail_len_dist.csv", 2);
+    //printf("Done!\n");
+    //calculate_length_data(master, 638);
     
-    int tot;
-    for (int i = 0; i < 638; i++) {
-      int x = string_analysis((master[i]->diet), 1);
-      if (x > 0) {
-        tot = tot + x;
-        printf("Lionfish #%d ate %d shrimp, running total is %d!\n", (i + 1), x, tot);
-      }
-    }
-    printf("Total shrimp damage done: %d\n", tot); 
   }
   else {
     printf("Please recompile when ready. Instructions are listed in README.md if needed!\n");
   }
   return OK;
-} */
+} 
  
 
 void calculate_length_data(lionfish_t** given, int size) {
@@ -247,19 +238,12 @@ double compute_female_percentage_by_time(lionfish_t** given, int file_size, int 
 
 int string_analysis(char * given, int req) {
   if (req == 1) {
-    if ((given[0] == '-') || (given[0] == '0')) {
-      return -50000;
-    }
-    char c = ' ';
-    for (int i = 0; i < strlen(given); i++) {
-      if ((given[i] == 's') && (given[(i + 1)] = 'h') && (given[(i + 2)]  == 'r')) {
-        //printf("%c\n", given[(i - 2)]);
-        c = (given[(i - 2)]);
-        int x = 0;
-        sscanf(&c, "%d", &x);
-        return x;
-      }
-    }
+    printf("Yay!\n");
   }
-  return -50000;
+  if (strcmp(given, "-1") == 0) {
+    return 1;
+  }
+  else {
+    return 0;
+  }
 }
