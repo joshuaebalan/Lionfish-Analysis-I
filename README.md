@@ -48,7 +48,10 @@ At the completion of this project, the prospective plan is to format all tools i
 
 ### Compilation instructions
 
-1. Please add all data you'd like to compile into the MASTER\_DATA.csv file prior to use of the .exe file; Please follow the format provided in the sheet linked here.
-2. Upon compilation, please answer prompts with numbers. For yes and no, please note that 1 corresponds to yes and 0 to no. This program is not designed to handle other inputs, which could result in unexpected behavior
+Although this project gives its users instructions along the way of compilation, there are a few things to keep in mind:
+
+1. The only file the program will ever read from is the MASTER\_DATA.csv file. If all data is entered into the program directly, all data will be saved there automatically; however, if the user has a .csv file of the proper format they would like to use, they may append the file directly. WARNING: If the user does this, there is no guarantee the program will function as expected, unlike if the user simply adds the fish through the intended way, which ensures the proper formatting is followed automatically.
+2. Upon compilation, please answer prompts with numbers. For yes and no, please note that 1 corresponds to yes and 0 to no. This program is designed to be user friendly, such that it will warn users of unexpected answers, but it is still important to pay attention to the prompts when responding to them.
+3. This product is designed to operate without any connection of any kind for use on islands. Because of this, one machine will not connect to this program on another, but all data is ready to export at any time in the MASTER\_DATA.csv file. 
 ### Privacy Statement
-All works here are solely and exclusively intended for use by Purdue University, specifically students under Dr. Greg Michalski of the Purdue University Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
+Until distribution, all works here are solely and exclusively intended for use by Purdue University, specifically students of the Purdue University Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
