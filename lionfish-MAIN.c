@@ -2,7 +2,7 @@
 
 
 int main() {
-  printf("\n\nWelcome to Joshua E. Balan's lionfish analysis device! \n\nBefore use please read the README.md as well as the research paper of the effort to write this lovely tool! Knowlege of the research conducted to create this product is imperitive to use its operations. With that in mind, would you like to: \n\n[1]. Add new lionfish to index?\n[2].Perform operations on already-entered dataset, including exporting sorted data?\nOr\n[3].Exit the tool?\n\n**Note: type the numbers in the brackets and press ENTER to make your choice!**\n");
+  printf("\n\nWelcome to Joshua E. Balan's lionfish analysis device! \n\nBefore use please read the README.md as well as the research paper of the effort to write this lovely tool! Knowlege of the research conducted to create this product is imperitive to use its operations. With that in mind, would you like to: \n\n[1]. Add new lionfish to index?\n[2]. Perform operations on already-entered dataset, including exporting sorted data?\nOr\n[3].Exit the tool?\n\n**Note: type the numbers in the brackets and press ENTER to make your choice!**\n");
   int x = 0;
   char burner =  ' ';
   scanf("%d", &x);
@@ -36,13 +36,14 @@ int main() {
       int c = scanf("%d/%d/%d", &month, &day, &year);
       if (c != 3) {
         printf("Looks like something's not quite right with the date you entered. Please try again!\n\n[Press ENTER to continue...]");
-        scanf("%c", &burner);
+        scanf("%c\n", &burner);
       }
       else {
         breaker = 1;
       }
     }
-    lionfish_t ** new_list = malloc(sizeof(struct lionfish) * count);
+    lionfish_t ** new_list = malloc(8 * count);
+    
     assert(new_list != NULL);
     float with_tail = 0.0;
     float tailless = 0.0;
@@ -52,18 +53,28 @@ int main() {
     int juv = 0;
     int sex = 0;
     int verif = 0;
-    char diet[51] = { 0 };
+    //char diet[51] = { 0 };
     int finalconf = 0;
+    char *diet = malloc(51);
+    assert(diet != NULL);
     for (int i = 0; i < count; i++) {
+      lionfish_t *new_fish = malloc(sizeof(struct lionfish));
+      assert(new_fish == NULL);
       while (finalconf == 0) {
-        printf("Entering lionfish #%d...[press ENTER to continue...]\n", (i + 1));
-        scanf("%c", &burner);
-        new_list[i]->time_caught->day = day;
+        printf("Entering lionfish #%d...\n", (i + 1));
+        catch_t *new_time = malloc(sizeof(struct spear));
+        new_fish->time_caught = new_time;
+        printf("0\n");
+        new_time->day = day;
+        printf("1\n");
         new_list[i]->time_caught->month = month;
+        printf("2\n");
         new_list[i]->time_caught->year = year;
+        printf("3\n");
         new_list[i]->confidence = conf;
-        char *diet = malloc(51);
-        assert(diet != NULL);
+        printf("made it here!\n");
+        //char *diet = malloc(51);
+        //assert(diet != NULL);
         printf("How long is this lionfish with its tail attached?\n");
         scanf("%f", &with_tail);
         printf("How long is the lionfish without its tail?\n");
@@ -126,7 +137,7 @@ int main() {
         new_list[i]->sex = sex;
         printf("Data successfully entered for lionfish #%d!\n", i);
       }
-      append_to_master(new_list, "test.csv", count);
+      //append_to_master(new_list, "test.csv", count);
     }
     printf("Press any key to exit!\n");
     scanf("%c", &burner);

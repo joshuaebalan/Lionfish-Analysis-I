@@ -42,10 +42,10 @@ typedef struct lionfish {
   int has_beard;
   int juvenile;
   float confidence;
-  struct time *time_caught;
+  struct spear *time_caught;
 } lionfish_t;
 
-typedef struct time {
+typedef struct spear {
   unsigned int year;
   unsigned int month;
   unsigned int day;

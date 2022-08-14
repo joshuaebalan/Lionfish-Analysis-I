@@ -45,7 +45,7 @@ lionfish_t **read_table_file(char *filename) {
       new->diet = malloc(strlen(diet_buf) + 1);
       assert(new->diet != NULL);
       strcpy(new->diet, diet_buf);
-      new->time_caught = malloc(sizeof(struct time));
+      new->time_caught = malloc(sizeof(struct spear));
       assert(new->time_caught != NULL);
       new->time_caught->year = (2000 + year);
       new->time_caught->month = month;
@@ -75,6 +75,8 @@ int append_to_master(lionfish_t **addto, char *name, int count) {
     fseek(fp, 0L, SEEK_END);
     fprintf(fp, "%d/%d/%d,%f,%f,%f,%d,%d,%d,%d,%s,\n", addto[i]->time_caught->month, addto[i]->time_caught->day, addto[i]->time_caught->year, addto[i]->confidence, addto[i]->length_with_tail, addto[i]->length_tailless, addto[i]->has_noodles, addto[i]->has_beard, addto[i]->sex, addto[i]->has_eggs, addto[i]->diet);
   }
+  fclose(fp);
+  fp = NULL;
   printf("Added %d new lines to %s!\n", count, name);
   return OK;
 }

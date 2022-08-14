@@ -1,5 +1,5 @@
 #include "lionfish.h"
-int main() {
+/*int main() {
   printf("Welcome to the Automated Lionfish Dissection Analysis Wizard! MASTER_DATA.csv ready to be read?[0/1]\n");
   int read = 0;
   char buf = ' ';
@@ -22,7 +22,7 @@ int main() {
     printf("Please recompile when ready. Instructions are listed in README.md if needed!\n");
   }
   return OK;
-} 
+} */ 
  
 
 void calculate_length_data(lionfish_t** given, int size) {
