@@ -25,8 +25,7 @@ int main() {
     printf("How many lionfish are there on the table total? (Not just the ones being dissected!)\n");
     scanf("%d", &table);
     float conf = (float)count / table;
-    printf("Assigning a confidence index of %.2f to these fish. OK?\n\n[press ENTER to continue...]\n", conf);
-    scanf("%c", &burner);
+    printf("Assigning a confidence index of %.2f to these fish.\n", conf);
     int breaker = 0;
     unsigned int day = 0;
     unsigned int month = 0;
@@ -59,7 +58,7 @@ int main() {
     assert(diet != NULL);
     for (int i = 0; i < count; i++) {
       lionfish_t *new_fish = malloc(sizeof(struct lionfish));
-      assert(new_fish == NULL);
+      assert(new_fish != NULL);
       while (finalconf == 0) {
         printf("Entering lionfish #%d...\n", (i + 1));
         catch_t *new_time = malloc(sizeof(struct spear));
@@ -67,11 +66,11 @@ int main() {
         printf("0\n");
         new_time->day = day;
         printf("1\n");
-        new_list[i]->time_caught->month = month;
+        new_time->month = month;
         printf("2\n");
-        new_list[i]->time_caught->year = year;
+        new_time->year = year;
         printf("3\n");
-        new_list[i]->confidence = conf;
+        new_fish->confidence = conf;
         printf("made it here!\n");
         //char *diet = malloc(51);
         //assert(diet != NULL);
@@ -122,19 +121,26 @@ int main() {
         printf("Is this fish considered juvenile?[0/1]\n");
         scanf("%d", &juv);
         printf("Finally, please describe the stomach contents of lionfish #%d.\n", i);
-        scanf("%50s\n", diet);
-        printf("You have listed that lionfish #%d has:\nLength with tail %.2f;\nLength without %.2f;\nNoodle value %d;\nBeard value %d;\nSex value %d;\nEgg value %d;\nJuvenile status %d;\nDiet description of \"%s\".\n\n If all of the following is correct, press [1]. If not, press [0] to reset this fish.\n", i, with_tail, tailless, noodles, beard, sex, eggs, juv, diet);
+        scanf("%[50^\n]", diet);
+        if ((strcmp("empty", diet) == 0) || (strcmp(diet, "Empty") == 0)) {
+          diet = "0";
+        }
+        else if ((strcmp(diet, "Digested") == 0) || (strcmp(diet, "digested") == 0)) {
+          diet = "-1";
+        }
+        printf("You have listed that lionfish #%d has:\nLength with tail %.2f;\nLength without %.2f;\nNoodle value %d;\nBeard value %d;\nSex value %d;\nEgg value %d;\nJuvenile status %d;\n(adjusted)Diet description of \"%s\".\n\n If all of the following is correct, press [1]. If not, press [0] to reset this fish.\n", i, with_tail, tailless, noodles, beard, sex, eggs, juv, diet);
         scanf("%d",  &finalconf);
       }
       if (finalconf != 0) {
-        new_list[i]->has_noodles = noodles;
-        new_list[i]->has_eggs = eggs;
-        new_list[i]->has_beard = beard;
-        new_list[i]->length_tailless = tailless;
-        new_list[i]->juvenile = juv;
-        new_list[i]->length_with_tail = with_tail;
-        strcpy(new_list[i]->diet, diet);
-        new_list[i]->sex = sex;
+        new_fish->has_noodles = noodles;
+        new_fish->has_eggs = eggs;
+        new_fish->has_beard = beard;
+        new_fish->length_tailless = tailless;
+        new_fish->juvenile = juv;
+        new_fish->length_with_tail = with_tail;
+        strcpy(new_fish->diet, diet);
+        new_fish->sex = sex;
+        new_list[i] = new_fish;
         printf("Data successfully entered for lionfish #%d!\n", i);
       }
       //append_to_master(new_list, "test.csv", count);
