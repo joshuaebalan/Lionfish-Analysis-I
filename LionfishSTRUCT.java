@@ -1,5 +1,5 @@
 import java.lang.Math;
-public class lionfishSTRUCT {
+public class LionfishSTRUCT {
     private int day;
     private int month;
     private int year;
@@ -13,20 +13,23 @@ public class lionfishSTRUCT {
     private int juv;
     private String stomach;
 
-    public lionfishSTRUCT(String s) {
+    public LionfishSTRUCT(String s) throws OhNoException {
         String[] fields = s.split(",");
+        if (fields.length != 8) {
+          throw new OhNoException();
+        }
         String[] dates = fields[0].split("/");
 
-        this.month = parseInt(dates[0]);
-        this.day = parseInt(dates[1]);
-        this.year = parseInt(dates[2]);
-        this.conf = parseFloat(fields[1]);
-        this.len_tail = parseFloat(fields[2]);
-        this.len_tailless = parseFloat(fields[3]);
-        this.noodles = parseInt(fields[4]);
-        this.beard = parseInt(fields[5]);
-        this.sex = parseInt(fields[6]);
-        this.eggs = parseInt(fields[7]);
+        this.month = Integer.parseInt(dates[0]);
+        this.day = Integer.parseInt(dates[1]);
+        this.year = Integer.parseInt(dates[2]);
+        this.conf = Float.parseFloat(fields[1]);
+        this.len_tail = Float.parseFloat(fields[2]);
+        this.len_tailless = Float.parseFloat(fields[3]);
+        this.noodles = Integer.parseInt(fields[4]);
+        this.beard = Integer.parseInt(fields[5]);
+        this.sex = Integer.parseInt(fields[6]);
+        this.eggs = Integer.parseInt(fields[7]);
         this.stomach = fields[8];
 
     }
@@ -41,5 +44,37 @@ public class lionfishSTRUCT {
     public int getSortKey() {
         return Math.round((100 * len_tail) + len_tailless);
     }
-
+    public int getNoodles() {
+      return noodles;
+    }
+    public int getSex() {
+      return sex;
+    }
+    public int getBeard() {
+      return beard;
+    }
+    public int getEggs() {
+      return eggs;
+    }
+    public float getTotal() {
+      return len_tail;
+    }
+    public float getTailless() {
+      return len_tailless;
+    }
+    public String getStomach() {
+      return stomach;
+    }
+    public float getConf() {
+      return conf;
+    }
+    public int getDay() {
+      return day;
+    }
+    public int getMonth() {
+      return month;
+    }
+    public int getYear() {
+      return year;
+    }
 }

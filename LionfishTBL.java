@@ -1,16 +1,39 @@
 import java.util.ArrayList;
+import java.io.*;
 public class LionfishTBL {
     private int count; //the number of fish in the table
     private int width; //the number of chains in this table
     private ArrayList<Object> table;
-    public LionfishTBL(String filename) {
-        //build hash based on file characteristics
+    public LionfishTBL(String filename) { //build new table from file
+       table = new ArrayList<Object>();
+       BufferedReader buf;
+       try {
+        buf = new BufferedReader(new FileReader(filename));
+        String line = buf.readLine();
+        int i = 1;
+        while (line != null) {
+          System.out.println(i + ":");
+          LionfishSTRUCT ls;
+          try {
+            ls = new LionfishSTRUCT(line);
+          }
+          catch (OhNoException e) {
+            line = buf.readLine();
+            continue;
+          }
+          insert(ls);
+          line = buf.readLine();
+          i++;
+        }
+       }
+       catch (IOException e) {
+        System.out.println("Something went wrong with file input!");
+       }
     }
-    public void insert(Object o) { //using all bits of the date a fish was caught, insert it into the table
-        LionfishSTRUCT ls = (LionfishSTRUCT) o;
+    public void insert(LionfishSTRUCT ls) { //using all bits of the date a fish was caught, insert it into the table
         int key = ls.getHashDate();
         for (int i = 0; i < table.size(); i++) {
-            ArrayList<Object> cur = table.get(i);
+            ArrayList<Object> cur = (ArrayList<Object>) table.get(i);
             if (cur == null || (int)(cur.get(0)) > key) {
                 ArrayList<Object> baby = new ArrayList<Object>();
                 baby.add((Object) key);
@@ -33,7 +56,7 @@ public class LionfishTBL {
                         return;
                     }
                     int key2 = ls2.getSortKey();
-                    if (placer <= key2 || ) {
+                    if (placer <= key2) {
                         baby.add(j, (Object) ls);
                         return;
                     }
@@ -42,9 +65,7 @@ public class LionfishTBL {
                 return;
             }
         }
-    throw new OhNoException();
+    //throw new OhNoException();
     }
-
-
 
 }
