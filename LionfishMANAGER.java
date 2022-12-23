@@ -1,16 +1,26 @@
+import java.util.ArrayList;
 public class LionfishMANAGER {
   public static void main(String[] args) {
     LionfishTBL lt = new LionfishTBL("MASTER_DATA.csv");
     System.out.println("Success!");
+    System.out.println(getRATIO(0, lt, 210301, 220301));
   }
 
-  public static float getRATIO(int key, LionfishTBL lt; int startKey, int endKey) {
-  //key: the setting on which the function operates. 0: noodles, 1: sex <<< % MALE.
-    //Pseudocode:
-    //Start at log entry chain of startKey
-    //End at log entry chain greater than endKey
-    //Sum all entries of either noodles (+ 0), beards (+1), or eggs, (3)
-    //before I do this, let's consider: should I create a diagnostic object with totals to speed up computing time?
+  public static float getRATIO(int key, LionfishTBL lt, int startKey, int endKey) {
+    int startDex = 0;
+    while (lt.diagnose(startDex).identify() < startKey) {
+      startDex++;
+    }
+    int total = 0;
+    int count = 0;
+    DiagnosticNode dn = null;
+    do {
+      dn = lt.diagnose(startDex);
+      total = total + dn.tallies[key];
+      count = count + dn.getCount();
+      startDex++;
+    }  while (dn.identify() < endKey && startDex < lt.getWidth());
+    return total / count;
   }
 
 

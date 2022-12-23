@@ -24,6 +24,7 @@ public class LionfishTBL {
             continue;
           }
           insert(ls);
+          System.out.println(count + ", " + width);
           line = buf.readLine();
           i++;
         }
@@ -36,20 +37,25 @@ public class LionfishTBL {
         int key = ls.getHashDate();
         for (int i = 0; i < table.size(); i++) {
             ArrayList<Object> cur = (ArrayList<Object>) table.get(i);
-            if (cur == null || (int)(cur.get(0)) > key) {
+            if (cur == null || ((DiagnosticNode) cur.get(0)).identify() > key) {
                 ArrayList<Object> baby = new ArrayList<Object>();
-                baby.add((Object) key);
+                DiagnosticNode ds = new DiagnosticNode(key);
+                System.out.println("New key: " + key);
+                ds.update(ls);
+                baby.add(ds);
                 baby.add((Object) ls);
                 count++;
                 width++;
                 table.add(i, baby);
                 return;
             }
-            else if ((int)cur.get(0) < key) {
+            else if (((DiagnosticNode) cur.get(0)).identify() < key) {
                 continue;
             }
             else { //a matching slot already exists
+                count++;
                 int placer = ls.getSortKey();
+
                 ArrayList<Object> baby = (ArrayList<Object>) table.get(i);
                 for (int j = 1; j < baby.size(); j++) {
                     LionfishSTRUCT ls2 = (LionfishSTRUCT) baby.get(j);
@@ -70,4 +76,15 @@ public class LionfishTBL {
     //throw new OhNoException();
     }
 
+  public DiagnosticNode diagnose(int i) {
+    ArrayList<Object> x = (ArrayList<Object>) table.get(i);
+    if (x == null) {
+      return null;
+    }
+
+    return (DiagnosticNode) x.get(0);
+  }
+  public int getWidth() {
+    return table.size();
+  }
 }

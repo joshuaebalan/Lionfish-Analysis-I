@@ -38,7 +38,7 @@ public class LionfishSTRUCT {
                 + sex + "," + eggs + "," + stomach;
     }
     public int getHashDate() {
-        return (10000 * (year - 2000)) + (100 * month) + day; //i.e. 03/12/2022 = 220312
+        return (10000 * (year)) + (100 * month) + day; //i.e. 03/12/2022 = 220312
     }
 
     public int getSortKey() {
