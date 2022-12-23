@@ -15,7 +15,7 @@ public class LionfishSTRUCT {
 
     public LionfishSTRUCT(String s) throws OhNoException {
         String[] fields = s.split(",");
-        if (fields.length != 8) {
+        if (fields.length != 9) {
           throw new OhNoException();
         }
         String[] dates = fields[0].split("/");

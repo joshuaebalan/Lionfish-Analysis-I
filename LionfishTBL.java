@@ -12,13 +12,15 @@ public class LionfishTBL {
         String line = buf.readLine();
         int i = 1;
         while (line != null) {
-          System.out.println(i + ":");
+          
           LionfishSTRUCT ls;
           try {
             ls = new LionfishSTRUCT(line);
           }
           catch (OhNoException e) {
             line = buf.readLine();
+            i++;
+            System.out.println(i);
             continue;
           }
           insert(ls);
