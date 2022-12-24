@@ -63,8 +63,9 @@ Until distribution, all works here are solely and exclusively intended for use b
 ### Key People/Thanks to:
 1. Dr. Greg Michalski, main advisor
 2. Willie Caal, ReefCI in-house marine biologist and owner of the dataset used in this project
-3. Dr. Jeff Turkstra, for his advice in technical elements of this project
-4. Skylar Guffey, for her assistance in data entry and her consultation on biological aspects of this project
+3. Linda Searle, ECOMAR Founder, primary Lionfish Working Group contact
+4. Dr. Jeff Turkstra, for his advice in technical elements of this project
+5. Skylar Guffey, for her assistance in data entry and her consultation on biological aspects of this project
 #### Data entry helpers:
 1. Hanna Fulford
 2. Stefano Parducci
