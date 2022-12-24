@@ -1,4 +1,4 @@
-# Lionfish Analysis I: FAQ
+# Lionfish Analysis: FAQ
 
 ### What are lionfish, and why are they a problem?
 Lionfish are an invasive species in the Carribean, especially surrounding tropical coral reefs. They are native to the tropical waters of the equatorial Pacific in which they have natural predators. However, they are the apex predators here in the West, due to their unnatural origin. First sighted in 2008 by various dive crews, lionfish have become generealistic in their diet, with the current understanding that they "eat anything they can fir in their mouths", according to ReefCI. The most problematic part of this is their culling of the parrotfish population, a keystone species that indirectly ensures the reefs are not snuffed out in their light competition with algae species. 
@@ -54,7 +54,7 @@ At the completion of this project, the prospective plan is to format all tools i
 
 ### Is this an actual academic study or just a personal project? Where can I get more information?
 
-This is a full undergraduate research project sponsored by the Purdue University Office of Undergraduate Research. Under Dr. Greg Michalski, I have documented this study academically, including presentations to both Purdue colloquia and international partners. As of this commit, this project has been approved for publication in the [Journal of Purdue Undergraduate Research](jpur.org), with the full article slated for release in August 2023. 
+This is a full undergraduate research project sponsored by the Purdue University Office of Undergraduate Research. Under Dr. Greg Michalski, I have documented this study academically, including presentations to both Purdue colloquia and international partners. As of this commit, this project has been approved for publication in the [Journal of Purdue Undergraduate Research](jpur.org), with the full article slated for release in August 2023. Note: Full project called "A Computational Analysis of Invasive Lionfish In Belize" in publications. 
 
 ### Can I copy/use this now?
 
