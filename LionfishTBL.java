@@ -23,7 +23,34 @@ public class LionfishTBL {
             continue;
           }
           insert(ls);
-          System.out.println(count + ", " + width);
+          //System.out.println(count + ", " + width);
+          line = buf.readLine();
+          i++;
+        }
+       }
+       catch (IOException e) {
+        System.out.println("Something went wrong with file input!");
+       }
+    }
+   public void appendFILE(String filename) { //build new table from file
+       BufferedReader buf;
+       try {
+        buf = new BufferedReader(new FileReader(filename));
+        String line = buf.readLine();
+        int i = 1;
+        while (line != null) {
+          LionfishSTRUCT ls;
+          try {
+            ls = new LionfishSTRUCT(line);
+          }
+          catch (OhNoException e) {
+            line = buf.readLine();
+            i++;
+            System.out.println(i);
+            continue;
+          }
+          insert(ls);
+          //System.out.println(count + ", " + width);
           line = buf.readLine();
           i++;
         }
@@ -39,7 +66,7 @@ public class LionfishTBL {
             if (table.isEmpty() || ((DiagnosticNode) cur.get(0)).identify() > key) {
                 ArrayList<Object> baby = new ArrayList<Object>();
                 DiagnosticNode ds = new DiagnosticNode(key);
-                System.out.println("New key: " + key);
+                //System.out.println("New key: " + key);
                 ds.update(ls);
                 baby.add(ds);
                 baby.add((Object) ls);
@@ -78,7 +105,7 @@ public class LionfishTBL {
         }
                 ArrayList<Object> baby = new ArrayList<Object>();
                 DiagnosticNode ds = new DiagnosticNode(key);
-                System.out.println("New key: " + key);
+                //System.out.println("New key: " + key);
                 ds.update(ls);
                 baby.add(ds);
                 baby.add((Object) ls);

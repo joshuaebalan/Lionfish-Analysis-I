@@ -2,28 +2,41 @@ import java.util.ArrayList;
 public class LionfishMANAGER {
   public static void main(String[] args) {
     LionfishTBL lt = new LionfishTBL("MASTER_DATA.csv");
-    System.out.println("Success!");
-    lt.review();
-    System.out.println(getRATIO(0, lt, 210301, 220301));
+
+    //lt.review();
+    //System.out.println(getRATIO(0, 3, lt, 000000, 999999));
   }
 
-  public static float getRATIO(int key, LionfishTBL lt, int startKey, int endKey) {
+  public static float getRATIO(int key, int sex, LionfishTBL lt, int startKey, int endKey) { //key: 0 = noodles, 1 = len with tail, 2 = len without; sex: 1 for both, other 2 normal
     int startDex = 0;
     while (lt.diagnose(startDex).identify() < startKey) {
       startDex++;
     }
-    int total = 0;
-    int count = 0;
+    float total = 0;
+    float count = 0;
     DiagnosticNode dn = null;
-    do {
-      dn = lt.diagnose(startDex);
-      System.out.println("Visited " + dn.identify());
-      total = total + dn.tallies[key];
-      count = count + dn.getCount();
-      startDex++;
-    }  while (dn.identify() < endKey && startDex < lt.getWidth());
-    return (float) total / count;
-  }
+    if (sex != 1) {
+      int key2 = key - 1; //simplified key for calculation purposes
+      do {
+        dn = lt.diagnose(startDex);
+        //System.out.println("Visited " + dn.identify());
+        total = total + dn.tallies[sex + (2 * key2)];
+        count = count + dn.tallies[sex + 4];
+        startDex++;
+      }  while (dn.identify() < endKey && startDex < lt.getWidth());
+    }
+    else {
+      do {
+        dn = lt.diagnose(startDex);
+        //System.out.println("Visited " + dn.identify());
+        total = total + dn.tallies[2 * key];
+        total = total + dn.tallies[(2 * key) + 1];
+        count = count + dn.getCount();
+        startDex++;
+      }  while (dn.identify() < endKey && startDex < lt.getWidth());
+      }
+    return total / count;
 
+}
 
 }
