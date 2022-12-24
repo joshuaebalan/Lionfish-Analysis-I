@@ -12,7 +12,6 @@ public class LionfishTBL {
         String line = buf.readLine();
         int i = 1;
         while (line != null) {
-          
           LionfishSTRUCT ls;
           try {
             ls = new LionfishSTRUCT(line);
@@ -37,7 +36,7 @@ public class LionfishTBL {
         int key = ls.getHashDate();
         for (int i = 0; i < table.size(); i++) {
             ArrayList<Object> cur = (ArrayList<Object>) table.get(i);
-            if (cur == null || ((DiagnosticNode) cur.get(0)).identify() > key) {
+            if (table.isEmpty() || ((DiagnosticNode) cur.get(0)).identify() > key) {
                 ArrayList<Object> baby = new ArrayList<Object>();
                 DiagnosticNode ds = new DiagnosticNode(key);
                 System.out.println("New key: " + key);
@@ -57,22 +56,37 @@ public class LionfishTBL {
                 int placer = ls.getSortKey();
 
                 ArrayList<Object> baby = (ArrayList<Object>) table.get(i);
+                DiagnosticNode ds = diagnose(i);
                 for (int j = 1; j < baby.size(); j++) {
                     LionfishSTRUCT ls2 = (LionfishSTRUCT) baby.get(j);
                     if (ls2 == null) {
                         baby.add(j, (Object) ls);
+                        ds.update(ls);
                         return;
                     }
                     int key2 = ls2.getSortKey();
                     if (placer <= key2) {
                         baby.add(j, (Object) ls);
+                        ds.update(ls);
                         return;
                     }
                 }
                 baby.add((Object) ls);
+                ds.update(ls);
                 return;
             }
         }
+                ArrayList<Object> baby = new ArrayList<Object>();
+                DiagnosticNode ds = new DiagnosticNode(key);
+                System.out.println("New key: " + key);
+                ds.update(ls);
+                baby.add(ds);
+                baby.add((Object) ls);
+                count++;
+                width++;
+                table.add(baby);
+                return;
+
     //throw new OhNoException();
     }
 
@@ -87,4 +101,10 @@ public class LionfishTBL {
   public int getWidth() {
     return table.size();
   }
+  public void review() {
+    for (int i = 0; i < table.size(); i++) {
+      System.out.println(diagnose(i).toString());
+    }
+  }
+
 }

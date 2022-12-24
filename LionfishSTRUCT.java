@@ -56,10 +56,10 @@ public class LionfishSTRUCT {
     public int getEggs() {
       return eggs;
     }
-    public float getTotal() {
+    public float getLenTail() {
       return len_tail;
     }
-    public float getTailless() {
+    public float getLenTailless() {
       return len_tailless;
     }
     public String getStomach() {
