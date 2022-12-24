@@ -133,5 +133,33 @@ public class LionfishTBL {
       System.out.println(diagnose(i).toString());
     }
   }
+  public void writeAll(String filename) {
+    try {
+      BufferedWriter buf = new BufferedWriter(new FileWriter(filename));
+      for (int i = 0; i < table.size(); i++) {
+        ArrayList<Object> ob = (ArrayList<Object>) table.get(i);
+        for (int j = 1; j < ob.size(); j++) {
+          buf.write(((LionfishSTRUCT) ob.get(j)).toString() + "\n");
+        }
+      }
+      buf.close();
+      }
+      catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+public void binDump(String filename) {
+  try {
+    FileOutputStream fos = new FileOutputStream(filename);
+    ObjectOutputStream oos = new ObjectOutputStream(fos);
+    oos.writeObject(table);
+    oos.close();
+    fos.close();
+  }
+  catch (IOException e) {
+    e.printStackTrace();
+  }
+}
 
 }

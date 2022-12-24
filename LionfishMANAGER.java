@@ -1,12 +1,27 @@
 import java.util.ArrayList;
+import java.io.*;
 public class LionfishMANAGER {
   public static void main(String[] args) {
     LionfishTBL lt = new LionfishTBL("MASTER_DATA.csv");
-
-    //lt.review();
+    lt.binDump("test_dump.lfs");
+    lt = binRead("test_dump.lfs");
+    lt.review();
     //System.out.println(getRATIO(0, 3, lt, 000000, 999999));
   }
-
+  public static LionfishTBL binRead(String filename) {
+    try {
+      FileInputStream fis = new FileInputStream(filename);
+      ObjectInputStream ois = new ObjectInputStream(fis);
+      Object ret = ois.readObject();
+      ois.close();
+      fis.close();
+      return (LionfishTBL) ret;
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
   public static float getRATIO(int key, int sex, LionfishTBL lt, int startKey, int endKey) { //key: 0 = noodles, 1 = len with tail, 2 = len without; sex: 1 for both, other 2 normal
     int startDex = 0;
     while (lt.diagnose(startDex).identify() < startKey) {
