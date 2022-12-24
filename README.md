@@ -1,23 +1,22 @@
-# Lionfish-Analysis-I
+# Lionfish Analysis I: FAQ
 
-This is intended for use for the analysis of invasive lionfish culling in Tom Owen's Caye, Belize with data from ReefCI, an ecotourism company aiming towards conservation.
-
-### Background:
+### What are lionfish, and why are they a problem?
 Lionfish are an invasive species in the Carribean, especially surrounding tropical coral reefs. They are native to the tropical waters of the equatorial Pacific in which they have natural predators. However, they are the apex predators here in the West, due to their unnatural origin. First sighted in 2008 by various dive crews, lionfish have become generealistic in their diet, with the current understanding that they "eat anything they can fir in their mouths", according to ReefCI. The most problematic part of this is their culling of the parrotfish population, a keystone species that indirectly ensures the reefs are not snuffed out in their light competition with algae species. 
 
 Here specifically, the first invasive lionfish were sighted in 2009, and ReefCI has been killing them ever since. They have also been dissecting them for years, and keeping careful log of the data, which this project hopes to use for greater understanding of their efforts.
 
-### Project Goal:
+### What's the goal of this project?
 This project aims to accomplish the following:
 1. Identify trends in the data
 2. Attempt to use current scientific understanding to explain trends away
 3. Should an unexplainable trend exist, further investigate and potentially organize an experiment for ReefCI.
 
-### Data Summary:
-This project uses dissection reports from diver-speared lionfish, which occur once weekly and dissect 10 fish. This spans over the course of about 2 years, and maps 638 dissections. Work is in progress to estimate the amount of lionfish in total this represents using the calculated confidence index, the second column in the .csv files. Additional findings may be found [here](https://docs.google.com/document/d/1qu2WIQ-7aA__ScxEGOMaAXd8uJPbYX2bNggdvtRtEPU/edit?usp=sharing).
+### What does the data look like?
+#### In general,
+this project uses dissection reports from diver-speared lionfish, which occur once weekly and dissect 10 fish. This spans over the course of about 2 years, and maps 638 dissections. Work is in progress to estimate the amount of lionfish in total this represents using the calculated confidence index, the second column in the .csv files. Additional findings may be found [here](https://docs.google.com/document/d/1qu2WIQ-7aA__ScxEGOMaAXd8uJPbYX2bNggdvtRtEPU/edit?usp=sharing).
 
-A basic Lionfish Structure looks like so:
-1. Time structure with the date caught
+#### Computationally, a basic Lionfish Structure looks like so:
+1. Day, month and year of date dissected
 2. Index of confidence, calculated by dividing 10 by the total amount of fish caught that day
 3. Length of the fish with tail
 4. Length of the fish without tail
@@ -32,6 +31,35 @@ On (6) and (8): According to ReefCI, all males have beards and all females eggs;
 
 On (5): The purpose of noodles are unclear; this project hopes to confirm or invalidate the hypothesis that noodles are more prevalent in juveniles.
 
+#### These structures are organized...
+by putting them in a jagged 2D array. The way that it works is that on the x-axis is the date caught represneted as an integer, i.e. 03/01/2022 = 220301, oldest at the front, newest in the back. From there, each link is first connected to a "Diagnostic Node"(see below), and then to the all of the individual fish structures(as described above) of the fish that were dissected on that day.
+
+#### A "Diagnostic Node" is...
+a completely different kind structure linked to the x-axis of the chain. The entire point of this is to take a space-time trade-off to make calculating statistics faster. It contains:
+1. The date integer to identify the chain
+2. The total number of lionfish in that chain
+3. The total amount of noodles across all of the lionfish*
+4. The total length of all the lionfish put together*
+5. The total length of all the lionfihs(without tail) put toggether*
+6. The total number of egg sacs across all of the lionfish
+7. the total number of beards across all of the lionfish
+
+*Split by sex
+##### What's the point of a "Diagnostic node?"
+Here's how much faster this makes things.
+Let's say that I want to know what percentage of fish across the whole set of 638 lionfish (as given by ReefCI) have noodles. If we don't have diagnostic nodes, I have to iterate across the entire set of chains, and increment a counter 638 times. However, if I do have diagnostic nodes, I only have to iterate over the number of days, in this case, is 64. So, with a diagnostic node, I'm doing the same thing in 574, or 89%, less comparisons.
+### When will the full version of this tool be released?
+
+At the completion of this project, the prospective plan is to format all tools into one single .exe file, which will automatically carry out the calculations that I did for my statistics. I am currently in the process of working with the [Belize Lionfish Working Group](https://eatdalion.bz) in order to release this to mainstream hunters. When that gets sorted, this tool will be released publicly, both to them and as a full repository for the wider public. 
+
+### Is this an actual academic study or just a personal project? Where can I get more information?
+
+This is a full undergraduate research project sponsored by the Purdue University Office of Undergraduate Research. Under Dr. Greg Michalski, I have documented this study academically, including presentations to both Purdue colloquia and international partners. As of this commit, this project has been approved for publication in the [Journal of Purdue Undergraduate Research](jpur.org), with the full article slated for release in August 2023. 
+
+### Can I copy/use this now?
+
+Until distribution, all works here are solely and exclusively intended for use by Purdue University, specifically students of the Purdue University Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan is strictly prohibited.
+
 ### Key People/Thanks to:
 1. Dr. Greg Michalski, main advisor
 2. Willie Caal, ReefCI in-house marine biologist and owner of the dataset used in this project
@@ -41,17 +69,3 @@ On (5): The purpose of noodles are unclear; this project hopes to confirm or inv
 1. Hanna Fulford
 2. Stefano Parducci
 3. John(Jack) Rodriguez
-
-### Intended Release
-
-At the completion of this project, the prospective plan is to format all tools into one single .exe file, which will automatically carry out the calculations that I did for my statistics, such that ReefCI or other keys in the Carribean may use my formatting to further understand the lionfish population. Additionally, I hope to derive future experiments such that ReefCI may re-establish their mission of conservation via the means of civilian science, a goal which was hindered by controversy years ago.
-
-### Compilation instructions
-
-Although this project gives its users instructions along the way of compilation, there are a few things to keep in mind:
-
-1. The only file the program will ever read from is the MASTER\_DATA.csv file. If all data is entered into the program directly, all data will be saved there automatically; however, if the user has a .csv file of the proper format they would like to use, they may append the file directly. WARNING: If the user does this, there is no guarantee the program will function as expected, unlike if the user simply adds the fish through the intended way, which ensures the proper formatting is followed automatically.
-2. Upon compilation, please answer prompts with numbers. For yes and no, please note that 1 corresponds to yes and 0 to no. This program is designed to be user friendly, such that it will warn users of unexpected answers, but it is still important to pay attention to the prompts when responding to them.
-3. This product is designed to operate without any connection of any kind for use on islands. Because of this, one machine will not connect to this program on another, but all data is ready to export at any time in the MASTER\_DATA.csv file. 
-### Privacy Statement
-Until distribution, all works here are solely and exclusively intended for use by Purdue University, specifically students of the Purdue University Earth, Atmospheric, and Planetary Studies Department. Use of materials without written consent from Joshua E. Balan or Dr. Greg Michalski is strictly prohibited.
