@@ -118,7 +118,13 @@ public class LionfishTBL {
     }
 
   public DiagnosticNode diagnose(int i) {
-    ArrayList<Object> x = (ArrayList<Object>) table.get(i);
+    ArrayList<Object> x;
+    try {
+      x = (ArrayList<Object>) table.get(i);
+    }
+    catch (IndexOutOfBoundsException e) {
+      return null;
+    }
     if (x == null) {
       return null;
     }
@@ -149,7 +155,7 @@ public class LionfishTBL {
       }
     }
 
-public void binDump(String filename) {
+/*public void binDump(String filename) {
   try {
     FileOutputStream fos = new FileOutputStream(filename);
     ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -160,6 +166,6 @@ public void binDump(String filename) {
   catch (IOException e) {
     e.printStackTrace();
   }
-}
+} */
 
 }
