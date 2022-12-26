@@ -4,8 +4,13 @@ import java.util.Date;
 public class LionfishMANAGER {
   public static void main(String[] args) {
     LionfishTBL lt = new LionfishTBL("MASTER_DATA.csv");
-    lt.review();
-    buildCSV(0, 3, 4, lt, 201101, 220101);
+    System.out.println("Closest to (lower) of 999999: " + lt.fitLower(999999));
+    //lt.review();
+    //lt.printKeys();
+    //buildCSV(0, 3, 10, lt, 201101, 220101);
+    System.out.println("Male: " + getRATIO(0, 2, lt, 000000, 999999) + "Female: " + getRATIO(0, 3, lt, 000000, 999999) + "Both: " + getRATIO(0, 1, lt, 000000, 999999));
+
+
   }
   public static void buildCSV(int key, int sex, int numSplits, LionfishTBL lt, int startKey, int endKey) {
     Date date = new Date();
@@ -18,8 +23,8 @@ public class LionfishMANAGER {
       String ret = "";
       for (int i = 0; i < numSplits; i++) {
         System.out.println((startKey + (i * splitDist)) + "," + (startKey + ((i + 1) * splitDist)));
-        x = getRATIO(key, sex, lt, (startKey + (i * splitDist)), (startKey + ((i + 1) * splitDist)));
-        ret = (startKey + (i * splitDist)) + "," + (startKey + ((i + 1) * splitDist)) + "," + x + "\n";
+        x = getRATIO(key, sex, lt, lt.fitLower(startKey + (i * splitDist)), lt.fitUpper(startKey + (i * splitDist)));
+        ret = lt.fitLower(startKey + (i * splitDist)) + "," + lt.fitUpper(startKey + (i * splitDist)) + "," + x + "\n";
         System.out.println(ret);
         bw.write(ret);
       }

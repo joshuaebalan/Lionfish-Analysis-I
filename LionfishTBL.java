@@ -3,9 +3,11 @@ import java.io.*;
 public class LionfishTBL {
     private int count; //the number of fish in the table
     private int width; //the number of chains in this table
+    private ArrayList<Integer> keyList;
     private ArrayList<Object> table;
     public LionfishTBL(String filename) { //build new table from file
        table = new ArrayList<Object>();
+       keyList = new ArrayList<Integer>();
        BufferedReader buf;
        try {
         buf = new BufferedReader(new FileReader(filename));
@@ -31,6 +33,31 @@ public class LionfishTBL {
        catch (IOException e) {
         System.out.println("Something went wrong with file input!");
        }
+    }
+    public ArrayList<Integer> getKeyList() {
+      return keyList;
+    }
+    public void printKeys() {
+      System.out.println("Keys:");
+      for (int i = 0; i < keyList.size(); i++) {
+        System.out.print(keyList.get(i) + ", ");
+      }
+    }
+   public int fitLower(int n) {
+      for (int i = 1; i < keyList.size(); i++) {
+        if (n < keyList.get(i)) {
+          return keyList.get(i - 1);
+        }
+      }
+      return keyList.get(keyList.size() - 2);
+    }
+    public int fitUpper(int n) {
+      for (int i = 1; i < keyList.size(); i++) {
+        if (n < keyList.get(i)) {
+          return keyList.get(i);
+        }
+      }
+      return keyList.get(keyList.size() - 1);
     }
    public void appendFILE(String filename) { //build new table from file
        BufferedReader buf;
@@ -73,6 +100,7 @@ public class LionfishTBL {
                 count++;
                 width++;
                 table.add(i, baby);
+                keyList.add(i, key);
                 return;
             }
             else if (((DiagnosticNode) cur.get(0)).identify() < key) {
