@@ -38,10 +38,12 @@ public class LionfishTBL {
       return keyList;
     }
     public void printKeys() {
-      System.out.println("Keys:");
+      System.out.println(count + "," + width);
+      System.out.println(keyList.size() +  " Keys:");
       for (int i = 0; i < keyList.size(); i++) {
         System.out.print(keyList.get(i) + ", ");
       }
+      System.out.println("\n");
     }
    public int fitLower(int n) {
       for (int i = 1; i < keyList.size(); i++) {
@@ -49,10 +51,10 @@ public class LionfishTBL {
           return keyList.get(i - 1);
         }
       }
-      return keyList.get(keyList.size() - 2);
+      return keyList.get(keyList.size() - 1);
     }
     public int fitUpper(int n) {
-      for (int i = 1; i < keyList.size(); i++) {
+      for (int i = 0; i < keyList.size(); i++) {
         if (n < keyList.get(i)) {
           return keyList.get(i);
         }
@@ -137,6 +139,7 @@ public class LionfishTBL {
                 ds.update(ls);
                 baby.add(ds);
                 baby.add((Object) ls);
+                keyList.add(key);
                 count++;
                 width++;
                 table.add(baby);

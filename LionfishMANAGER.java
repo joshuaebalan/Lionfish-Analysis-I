@@ -7,26 +7,46 @@ public class LionfishMANAGER {
     System.out.println("Closest to (lower) of 999999: " + lt.fitLower(999999));
     //lt.review();
     //lt.printKeys();
-    //buildCSV(0, 3, 10, lt, 201101, 220101);
-    System.out.println("Male: " + getRATIO(0, 2, lt, 000000, 999999) + "Female: " + getRATIO(0, 3, lt, 000000, 999999) + "Both: " + getRATIO(0, 1, lt, 000000, 999999));
+    buildCSV(0, 3, "Female_noodles_fixed.csv", lt, 000000, 999999);
+    buildCSV(0, 2, "Male_noodles_fixed.csv", lt, 000000, 999999);
+    buildCSV(0, 1, "Int_noodles_fixed.csv", lt, 000000, 999999);
+
+
+    System.out.println("Male: " + getRATIO(0, 2, lt, 000000, 999999) + ";\nFemale: " + getRATIO(0, 3, lt, 000000, 999999) + ";\nBoth: " + getRATIO(0, 1, lt, 000000, 999999));
 
 
   }
-  public static void buildCSV(int key, int sex, int numSplits, LionfishTBL lt, int startKey, int endKey) {
-    Date date = new Date();
-    String filename = date.getTime() + ".csv";
+  public static void buildCSV(int key, int sex, String filename, LionfishTBL lt, int startKey, int endKey) {
+    if (filename.equals("")) {
+      Date date = new Date();
+      filename = date.getTime() + ".csv";
+    }
+    int startLoc = 0;
+    int endLoc = 0;
+    startKey = lt.fitUpper(startKey);
+    endKey = lt.fitLower(endKey);
+    ArrayList<Integer> kl = lt.getKeyList();
+    for (int i = 0; i < kl.size(); i++) {
+      if (startKey == kl.get(i)) {
+        startLoc = i;
+      }
+      if (endKey == kl.get(i)) {
+        endLoc = i;
+      }
+    }
+    System.out.println(startLoc + "," + endLoc);
+    System.out.println(kl.size());
     BufferedWriter bw;
     try {
       bw = new BufferedWriter(new FileWriter(filename));
-      int splitDist = ((endKey - startKey) / numSplits);
       float x;
       String ret = "";
-      for (int i = 0; i < numSplits; i++) {
-        System.out.println((startKey + (i * splitDist)) + "," + (startKey + ((i + 1) * splitDist)));
-        x = getRATIO(key, sex, lt, lt.fitLower(startKey + (i * splitDist)), lt.fitUpper(startKey + (i * splitDist)));
-        ret = lt.fitLower(startKey + (i * splitDist)) + "," + lt.fitUpper(startKey + (i * splitDist)) + "," + x + "\n";
-        System.out.println(ret);
-        bw.write(ret);
+      for (int i = startLoc; i < endLoc; i++) {
+        //System.out.println(kl.get(i) + "," + kl.get(i + 1));
+        x = getRATIO(key, sex, lt, kl.get(i), kl.get(i + 1));
+        ret = kl.get(i) + "," + kl.get(i + 1) + "," + x + "\n";
+        //System.out.println(ret);
+       bw.write(ret);
       }
       bw.close();
     }
