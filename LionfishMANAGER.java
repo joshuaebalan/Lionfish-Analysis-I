@@ -4,15 +4,15 @@ import java.util.Date;
 public class LionfishMANAGER {
   public static void main(String[] args) {
     LionfishTBL lt = new LionfishTBL("MASTER_DATA.csv");
-    //System.out.println("Closest to (lower) of 999999: " + lt.fitLower(999999));
+    System.out.println("Closest to (lower) of 999999: " + lt.fitLower(999999));
     //lt.review();
     //lt.printKeys();
-    buildCSV(1, 3, "Female_full_fixed.csv", lt, 000000, 999999);
-    buildCSV(1, 2, "Male_full_fixed.csv", lt, 000000, 999999);
-    buildCSV(1, 1, "Int_full_fixed.csv", lt, 000000, 999999);
+    buildCSV(0, 3, "Female_noodles_fixed.csv", lt, 000000, 999999);
+    buildCSV(0, 2, "Male_noodles_fixed.csv", lt, 000000, 999999);
+    buildCSV(0, 1, "Int_noodles_fixed.csv", lt, 000000, 999999);
 
 
-    System.out.println("Male: " + getRATIO(1, 2, lt, 000000, 999999) + ";\nFemale: " + getRATIO(1, 3, lt, 000000, 999999) + ";\nBoth: " + getRATIO(1, 1, lt, 000000, 999999));
+    System.out.println("Male: " + getRATIO(0, 2, lt, 000000, 999999) + ";\nFemale: " + getRATIO(0, 3, lt, 000000, 999999) + ";\nBoth: " + getRATIO(0, 1, lt, 000000, 999999));
 
 
   }
