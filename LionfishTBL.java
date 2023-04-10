@@ -34,6 +34,9 @@ public class LionfishTBL {
         System.out.println("Something went wrong with file input!");
        }
     }
+    public ArrayList<Object> getTable() {
+      return table;
+    }
     public ArrayList<Integer> getKeyList() {
       return keyList;
     }
