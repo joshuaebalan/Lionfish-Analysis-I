@@ -54,7 +54,7 @@ At the completion of this project, the prospective plan is to format all tools i
 
 ### Is this an actual academic study or just a personal project? Where can I get more information?
 
-This is a full undergraduate research project sponsored by the Purdue University Office of Undergraduate Research. Under Dr. Greg Michalski, I have documented this study academically, including presentations to both Purdue colloquia and international partners. As of this commit, this project has been approved for publication in the [Journal of Purdue Undergraduate Research](jpur.org), with the full article slated for release in August 2023. Note: Full project called "A Computational Analysis of Invasive Lionfish In Belize" in publications. 
+This is a full undergraduate research project sponsored by the Purdue University Office of Undergraduate Research. Under Dr. Greg Michalski, I have documented this study academically, including presentations to both Purdue colloquia and international partners. As of this commit, this project has been approved for publication in the [Journal of Purdue Undergraduate Research](jpur.org), with the full article slated for release in August 2023. Note: Full project called "A Computational Analysis of Invasive Lionfish In Belize" in publications. This project was also just featured in the [Purdue Undergraduate Research Conference](https://www.purdue.edu/undergrad-research/conferences/spring/index.php)
 
 ### Can I copy/use this now?
 
